@@ -82,6 +82,10 @@ function Home() {
 
       {/* FEATURES */}
       <section className="max-w-7xl mx-auto px-6 py-20">
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-3">{t.featuresTitle}</h2>
+          <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{t.featuresSubtitle}</p>
+        </div>
         <div className="grid md:grid-cols-3 gap-5">
           {features.map(({ Icon, title, desc }) => (
             <div key={title} className="group rounded-2xl border border-border bg-card p-6 hover:border-primary/40 hover:shadow-[var(--shadow-elite)] transition-all">
