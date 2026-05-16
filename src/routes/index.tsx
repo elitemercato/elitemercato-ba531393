@@ -54,8 +54,8 @@ function Home() {
             <span className="block mx-auto mt-3 h-px w-20 sm:w-24 bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
           </div>
 
-          <h1 dir={lang === "ar" ? "rtl" : "ltr"} className="font-extrabold tracking-tight max-w-4xl leading-[1.2] text-2xl sm:text-4xl md:text-6xl lg:text-7xl [text-shadow:0_2px_4px_rgba(0,0,0,0.95),0_4px_24px_rgba(0,0,0,0.9)]">
-            <span className="bg-gradient-to-r from-[#ff8b8b] via-[#fca5a5] to-[#4ade80] bg-clip-text text-transparent drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">{t.heroTitle1}</span>{" "}
+          <h1 dir={lang === "ar" ? "rtl" : "ltr"} className="font-extrabold tracking-tight max-w-4xl leading-[1.2] text-2xl sm:text-4xl md:text-6xl lg:text-7xl [text-shadow:0_2px_4px_rgba(0,0,0,1),0_4px_24px_rgba(0,0,0,0.95)]">
+            <span className="bg-gradient-to-r from-[#ffd76a] via-[#ffe89a] to-[#ffffff] bg-clip-text text-transparent">{t.heroTitle1}</span>{" "}
             <span className="text-white">{t.heroTitle2}</span>
           </h1>
 
