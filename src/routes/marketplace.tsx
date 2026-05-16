@@ -3,6 +3,7 @@ import { Activity, BarChart2, Briefcase, FileText, Play, Star, Target } from "lu
 import { useState } from "react";
 import { formatDZD, SERVICES } from "@/lib/em-data";
 import { useLang } from "@/lib/em-i18n";
+import { RequireAuth } from "@/components/em/RequireAuth";
 
 const ICONS = { legal: FileText, tactical: Target, medical: Activity, media: Play, report: BarChart2, transfer: Briefcase };
 
@@ -13,7 +14,7 @@ export const Route = createFileRoute("/marketplace")({
       { name: "description", content: "Trusted Algerian sports services: legal, coaching, medical, and media." },
     ],
   }),
-  component: Marketplace,
+  component: () => <RequireAuth><Marketplace /></RequireAuth>,
 });
 
 function Marketplace() {

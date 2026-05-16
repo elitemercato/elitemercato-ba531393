@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowLeft, Briefcase, Building2, GraduationCap, Stethoscope, User } from "lucide-react";
 import { useLang } from "@/lib/em-i18n";
-import { redirectForRole, setRole as persistRole, type Role } from "@/lib/em-auth";
+import { redirectForRole, setAuthed, setRole as persistRole, type Role } from "@/lib/em-auth";
 import logo from "@/assets/elite-mercato-logo.png";
 
 export const Route = createFileRoute("/signup")({
@@ -35,6 +35,7 @@ function Signup() {
     e.preventDefault();
     if (!role) return;
     persistRole(role);
+    setAuthed(true);
     setSubmitted(true);
     setTimeout(() => redirectForRole(role, navigate), 900);
   };
