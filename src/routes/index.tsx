@@ -45,28 +45,8 @@ function Home() {
             className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 object-contain mb-5 md:mb-6 drop-shadow-[0_0_30px_rgba(0,132,61,0.6)]"
           />
 
-          <div className="text-gold font-extrabold uppercase tracking-[0.25em] sm:tracking-[0.3em] text-sm sm:text-base md:text-xl leading-none mb-10 md:mb-12 [text-shadow:0_2px_18px_rgba(0,0,0,0.7)]">
+          <div className="text-gold font-extrabold uppercase tracking-[0.25em] sm:tracking-[0.3em] text-sm sm:text-base md:text-xl leading-none mb-10 md:mb-12 [text-shadow:0_2px_4px_rgba(0,0,0,0.95),0_0_18px_rgba(0,0,0,0.85),0_0_30px_rgba(212,175,55,0.35)]">
             Become a PRO
-          </div>
-
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight max-w-4xl leading-tight [text-shadow:0_2px_20px_rgba(0,0,0,0.6)]">
-            <span className="bg-gradient-to-br from-foreground via-foreground to-primary bg-clip-text text-transparent">
-              {t.tagline}
-            </span>
-          </h1>
-          <p className="mt-6 max-w-2xl text-base md:text-lg text-foreground/90 [text-shadow:0_1px_12px_rgba(0,0,0,0.7)]">
-            {t.subtagline}
-          </p>
-
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            <Link to="/dashboard"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-bold text-primary-foreground bg-gradient-to-r from-primary to-accent hover:scale-[1.03] transition-transform shadow-[var(--shadow-elite)]">
-              {t.heroBtn} <ArrowRight size={18} className={lang === "ar" ? "rotate-180" : ""} />
-            </Link>
-            <Link to="/pricing"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-bold border border-gold/40 text-gold bg-gold/5 hover:bg-gold/10 transition-all">
-              <Crown size={18} /> {t.heroBtn2}
-            </Link>
           </div>
         </div>
       </section>
