@@ -4,6 +4,7 @@ import { useState } from "react";
 import { PLAYERS, playerName, playerWilaya } from "@/lib/em-data";
 import { useLang } from "@/lib/em-i18n";
 import { PlayerCard } from "@/components/em/PlayerCard";
+import { RequireAuth } from "@/components/em/RequireAuth";
 
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
@@ -12,7 +13,7 @@ export const Route = createFileRoute("/dashboard")({
       { name: "description", content: "Browse Algerian football talents with advanced filters: position, wilaya, market value." },
     ],
   }),
-  component: Dashboard,
+  component: () => <RequireAuth><Dashboard /></RequireAuth>,
 });
 
 function Dashboard() {

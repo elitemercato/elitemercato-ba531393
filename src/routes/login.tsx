@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ArrowLeft, Building2, GraduationCap, LogIn, Stethoscope, User } from "lucide-react";
 import { useLang } from "@/lib/em-i18n";
-import { getRole, redirectForRole, setRole as persistRole, type Role } from "@/lib/em-auth";
+import { getRole, redirectForRole, setAuthed, setRole as persistRole, type Role } from "@/lib/em-auth";
 import logo from "@/assets/elite-mercato-logo.png";
 
 export const Route = createFileRoute("/login")({
@@ -36,6 +36,7 @@ function Login() {
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     persistRole(role);
+    setAuthed(true);
     redirectForRole(role, navigate);
   };
 

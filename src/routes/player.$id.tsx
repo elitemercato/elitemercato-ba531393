@@ -2,9 +2,10 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, Crown, Flame, MapPin, Play, Star } from "lucide-react";
 import { formatDZD, PLAYERS, playerClub, playerName, playerWilaya } from "@/lib/em-data";
 import { useLang } from "@/lib/em-i18n";
+import { RequireAuth } from "@/components/em/RequireAuth";
 
 export const Route = createFileRoute("/player/$id")({
-  component: PlayerView,
+  component: () => <RequireAuth><PlayerView /></RequireAuth>,
   notFoundComponent: () => (
     <div className="max-w-md mx-auto py-24 text-center">
       <h1 className="text-2xl font-bold">Player not found</h1>
