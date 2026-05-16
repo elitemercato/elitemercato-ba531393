@@ -44,6 +44,8 @@ export const T = {
     backHome: "العودة للرئيسية",
     heroTitle1: "كن محترفا.", heroTitle2: "وإستثمر في مجالك الرياضي.",
     heroDesc: "اكتشف فرصك، طوّر أداءك واحمِ حقوقك. أول منصة رياضية جزائرية تدمج ذكاء البيانات بالخبرة الميدانية لبناء مسار إحترافي.",
+    featuresTitle: "لماذا النخبة ميركاتو؟", featuresSubtitle: "منظومة متكاملة تجمع الكشف الذكي بالحماية القانونية والخدمات الميدانية في منصة واحدة.",
+    servicesTitle: "خدمات احترافية تحت الطلب", servicesSubtitle: "تواصل مباشرة مع خبراء معتمدين في المجال القانوني، التدريبي، الطبي والإعلامي.",
   },
   en: {
     brand: "Elite Mercato", tagline: "Algeria's Premier Sport-Tech Platform",
@@ -87,6 +89,8 @@ export const T = {
     backHome: "Back to home",
     heroTitle1: "Become a PRO.", heroTitle2: "Invest in your sports career.",
     heroDesc: "Discover opportunities, develop your performance, and protect your rights. Algeria's first sports platform combining data intelligence with field expertise to build a professional path.",
+    featuresTitle: "Why Elite Mercato?", featuresSubtitle: "An integrated ecosystem combining smart scouting, legal protection, and field services in a single platform.",
+    servicesTitle: "Professional Services On Demand", servicesSubtitle: "Connect directly with certified experts in legal, coaching, medical and media fields.",
   },
   fr: {
     brand: "Elite Mercato", tagline: "La Plateforme Sport-Tech N°1 d'Algérie",
@@ -130,6 +134,8 @@ export const T = {
     backHome: "Retour à l'accueil",
     heroTitle1: "Devenez un PRO.", heroTitle2: "Investissez dans votre carrière sportive.",
     heroDesc: "Découvrez vos opportunités, développez vos performances et protégez vos droits. La première plateforme sportive algérienne alliant intelligence des données et expertise du terrain pour bâtir un parcours professionnel.",
+    featuresTitle: "Pourquoi Elite Mercato ?", featuresSubtitle: "Un écosystème intégré qui combine recrutement intelligent, protection juridique et services de terrain dans une seule plateforme.",
+    servicesTitle: "Services professionnels à la demande", servicesSubtitle: "Connectez-vous directement avec des experts certifiés dans les domaines juridique, sportif, médical et médiatique.",
   },
 } as const;
 
