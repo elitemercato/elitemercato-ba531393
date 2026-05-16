@@ -128,6 +128,8 @@ export const T = {
     signinTitle: "Connexion", signinSub: "Bon retour sur votre plateforme",
     noAccount: "Pas encore de compte ?", forgotPwd: "Mot de passe oublié ?", signin: "Se connecter",
     backHome: "Retour à l'accueil",
+    heroTitle1: "Devenez un PRO.", heroTitle2: "Investissez dans votre carrière sportive.",
+    heroDesc: "Découvrez vos opportunités, développez vos performances et protégez vos droits. La première plateforme sportive algérienne alliant intelligence des données et expertise du terrain pour bâtir un parcours professionnel.",
   },
 } as const;
 
