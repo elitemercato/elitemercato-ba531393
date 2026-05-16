@@ -42,6 +42,8 @@ export const T = {
     signinTitle: "تسجيل الدخول", signinSub: "مرحبا بعودتك إلى منصتك",
     noAccount: "ليس لديك حساب؟", forgotPwd: "نسيت كلمة المرور؟", signin: "دخول",
     backHome: "العودة للرئيسية",
+    heroTitle1: "كن محترفا.", heroTitle2: "وإستثمر في مجالك الرياضي.",
+    heroDesc: "اكتشف فرصك، طوّر أداءك واحمِ حقوقك. أول منصة رياضية جزائرية تدمج ذكاء البيانات بالخبرة الميدانية لبناء مسار إحترافي.",
   },
   en: {
     brand: "Elite Mercato", tagline: "Algeria's Premier Sport-Tech Platform",
