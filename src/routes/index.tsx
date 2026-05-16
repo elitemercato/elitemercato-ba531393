@@ -33,31 +33,31 @@ function Home() {
           preload="auto"
           aria-hidden="true"
         />
-        <div className="absolute inset-0 -z-10 bg-background/25" />
-        <div className="absolute inset-x-0 bottom-0 h-1/2 -z-10 bg-gradient-to-t from-background/70 to-transparent" />
+        <div className="absolute inset-0 -z-10 bg-background/40 sm:bg-background/30" />
+        <div className="absolute inset-x-0 bottom-0 h-2/3 -z-10 bg-gradient-to-t from-background via-background/70 to-transparent" />
         <div className="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-primary/10 blur-3xl -z-10" />
         <div className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-gold/5 blur-3xl -z-10" />
 
-        <div className="max-w-7xl mx-auto px-6 pt-16 md:pt-24 pb-24 text-center flex flex-col items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-12 sm:pt-16 md:pt-24 pb-16 sm:pb-24 text-center flex flex-col items-center">
           <img
             src={logo}
             alt="Elite Mercato"
-            className="h-36 w-36 sm:h-44 sm:w-44 md:h-56 md:w-56 object-contain mb-6 md:mb-8 drop-shadow-[0_0_40px_rgba(0,132,61,0.65)]"
+            className="h-28 w-28 sm:h-44 sm:w-44 md:h-56 md:w-56 object-contain mb-5 sm:mb-8 drop-shadow-[0_0_40px_rgba(0,132,61,0.65)]"
           />
 
-          <div className="relative inline-block font-black uppercase leading-none mb-12 md:mb-16 text-base sm:text-lg md:text-2xl tracking-[0.3em] sm:tracking-[0.35em] [text-shadow:0_2px_4px_rgba(0,0,0,0.95),0_0_22px_rgba(0,0,0,0.85),0_0_38px_rgba(212,175,55,0.45)]">
+          <div className="relative inline-block font-black uppercase leading-none mb-8 sm:mb-12 md:mb-16 text-sm sm:text-lg md:text-2xl tracking-[0.25em] sm:tracking-[0.35em] [text-shadow:0_2px_4px_rgba(0,0,0,0.95),0_0_22px_rgba(0,0,0,0.85),0_0_38px_rgba(212,175,55,0.45)]">
             <span className="em-shimmer">
               Become a PRO
             </span>
-            <span className="block mx-auto mt-3 h-px w-24 bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
+            <span className="block mx-auto mt-3 h-px w-20 sm:w-24 bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
           </div>
 
-          <h1 dir="rtl" className="font-extrabold tracking-tight max-w-4xl leading-[1.15] text-4xl sm:text-5xl md:text-7xl [text-shadow:0_2px_20px_rgba(0,0,0,0.7)]">
-            <span className="bg-gradient-to-r from-[#ff6b6b] via-[#f87171] to-[#22c55e] bg-clip-text text-transparent">كن محترفا.</span>{" "}
+          <h1 dir="rtl" className="font-extrabold tracking-tight max-w-4xl leading-[1.2] text-2xl sm:text-4xl md:text-6xl lg:text-7xl [text-shadow:0_2px_4px_rgba(0,0,0,0.95),0_4px_24px_rgba(0,0,0,0.9)]">
+            <span className="bg-gradient-to-r from-[#ff8b8b] via-[#fca5a5] to-[#4ade80] bg-clip-text text-transparent drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">كن محترفا.</span>{" "}
             <span className="text-white">وإستثمر في مجالك الرياضي.</span>
           </h1>
 
-          <p dir="rtl" className="mt-8 max-w-2xl text-base md:text-lg text-white/90 leading-loose [text-shadow:0_1px_12px_rgba(0,0,0,0.8)]">
+          <p dir="rtl" className="mt-5 sm:mt-8 max-w-2xl text-sm sm:text-base md:text-lg text-white leading-[2] sm:leading-loose font-medium [text-shadow:0_2px_4px_rgba(0,0,0,1),0_2px_16px_rgba(0,0,0,0.95)]">
             اكتشف فرصك، طوّر أداءك واحمِ حقوقك. أول منصة رياضية جزائرية تدمج ذكاء البيانات بالخبرة الميدانية لبناء مسار إحترافي.
           </p>
         </div>
