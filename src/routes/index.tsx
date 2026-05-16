@@ -47,12 +47,6 @@ function Home() {
             className="h-28 w-28 sm:h-44 sm:w-44 md:h-56 md:w-56 object-contain mb-5 sm:mb-8 drop-shadow-[0_0_40px_rgba(0,132,61,0.65)]"
           />
 
-          <div className="relative inline-block font-black uppercase leading-none mb-8 sm:mb-12 md:mb-16 text-sm sm:text-lg md:text-2xl tracking-[0.25em] sm:tracking-[0.35em] [text-shadow:0_2px_4px_rgba(0,0,0,0.95),0_0_22px_rgba(0,0,0,0.85),0_0_38px_rgba(212,175,55,0.45)]">
-            <span className="em-shimmer">
-              Become a PRO
-            </span>
-            <span className="block mx-auto mt-3 h-px w-20 sm:w-24 bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
-          </div>
 
           <h1 dir={lang === "ar" ? "rtl" : "ltr"} className="font-extrabold tracking-tight max-w-4xl leading-[1.2] text-2xl sm:text-4xl md:text-6xl lg:text-7xl [text-shadow:0_2px_4px_rgba(0,0,0,1),0_4px_24px_rgba(0,0,0,0.95)]">
             <span className="bg-gradient-to-r from-[#ffd76a] via-[#ffe89a] to-[#ffffff] bg-clip-text text-transparent">{t.heroTitle1}</span>{" "}
