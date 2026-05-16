@@ -9,12 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as MarketplaceRouteImport } from './routes/marketplace'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PlayerIdRouteImport } from './routes/player.$id'
 
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
@@ -46,6 +52,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRoute
   '/marketplace': typeof MarketplaceRoute
   '/pricing': typeof PricingRoute
+  '/signup': typeof SignupRoute
   '/player/$id': typeof PlayerIdRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +60,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof DashboardRoute
   '/marketplace': typeof MarketplaceRoute
   '/pricing': typeof PricingRoute
+  '/signup': typeof SignupRoute
   '/player/$id': typeof PlayerIdRoute
 }
 export interface FileRoutesById {
@@ -61,19 +69,33 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRoute
   '/marketplace': typeof MarketplaceRoute
   '/pricing': typeof PricingRoute
+  '/signup': typeof SignupRoute
   '/player/$id': typeof PlayerIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/marketplace' | '/pricing' | '/player/$id'
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/marketplace'
+    | '/pricing'
+    | '/signup'
+    | '/player/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/marketplace' | '/pricing' | '/player/$id'
+  to:
+    | '/'
+    | '/dashboard'
+    | '/marketplace'
+    | '/pricing'
+    | '/signup'
+    | '/player/$id'
   id:
     | '__root__'
     | '/'
     | '/dashboard'
     | '/marketplace'
     | '/pricing'
+    | '/signup'
     | '/player/$id'
   fileRoutesById: FileRoutesById
 }
@@ -82,11 +104,19 @@ export interface RootRouteChildren {
   DashboardRoute: typeof DashboardRoute
   MarketplaceRoute: typeof MarketplaceRoute
   PricingRoute: typeof PricingRoute
+  SignupRoute: typeof SignupRoute
   PlayerIdRoute: typeof PlayerIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pricing': {
       id: '/pricing'
       path: '/pricing'
@@ -130,8 +160,19 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRoute: DashboardRoute,
   MarketplaceRoute: MarketplaceRoute,
   PricingRoute: PricingRoute,
+  SignupRoute: SignupRoute,
   PlayerIdRoute: PlayerIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
