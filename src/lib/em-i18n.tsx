@@ -42,6 +42,8 @@ export const T = {
     signinTitle: "تسجيل الدخول", signinSub: "مرحبا بعودتك إلى منصتك",
     noAccount: "ليس لديك حساب؟", forgotPwd: "نسيت كلمة المرور؟", signin: "دخول",
     backHome: "العودة للرئيسية",
+    heroTitle1: "كن محترفا.", heroTitle2: "وإستثمر في مجالك الرياضي.",
+    heroDesc: "اكتشف فرصك، طوّر أداءك واحمِ حقوقك. أول منصة رياضية جزائرية تدمج ذكاء البيانات بالخبرة الميدانية لبناء مسار إحترافي.",
   },
   en: {
     brand: "Elite Mercato", tagline: "Algeria's Premier Sport-Tech Platform",
@@ -83,6 +85,8 @@ export const T = {
     signinTitle: "Sign In", signinSub: "Welcome back to your platform",
     noAccount: "Don't have an account?", forgotPwd: "Forgot password?", signin: "Sign In",
     backHome: "Back to home",
+    heroTitle1: "Become a PRO.", heroTitle2: "Invest in your sports career.",
+    heroDesc: "Discover opportunities, develop your performance, and protect your rights. Algeria's first sports platform combining data intelligence with field expertise to build a professional path.",
   },
   fr: {
     brand: "Elite Mercato", tagline: "La Plateforme Sport-Tech N°1 d'Algérie",
@@ -124,6 +128,8 @@ export const T = {
     signinTitle: "Connexion", signinSub: "Bon retour sur votre plateforme",
     noAccount: "Pas encore de compte ?", forgotPwd: "Mot de passe oublié ?", signin: "Se connecter",
     backHome: "Retour à l'accueil",
+    heroTitle1: "Devenez un PRO.", heroTitle2: "Investissez dans votre carrière sportive.",
+    heroDesc: "Découvrez vos opportunités, développez vos performances et protégez vos droits. La première plateforme sportive algérienne alliant intelligence des données et expertise du terrain pour bâtir un parcours professionnel.",
   },
 } as const;
 
