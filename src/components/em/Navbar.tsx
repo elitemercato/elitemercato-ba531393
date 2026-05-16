@@ -1,14 +1,27 @@
-import { Link, useRouterState } from "@tanstack/react-router";
-import { LogIn, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
+import { LogIn, LogOut, Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useLang } from "@/lib/em-i18n";
 import type { Lang } from "@/lib/em-data";
+import { isAuthed, signOut } from "@/lib/em-auth";
 import logo from "@/assets/elite-mercato-logo.png";
 
 export function Navbar() {
   const { lang, setLang, t } = useLang();
   const { location } = useRouterState();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const [authed, setAuthedState] = useState(false);
+
+  useEffect(() => {
+    setAuthedState(isAuthed());
+  }, [location.pathname]);
+
+  const onLogout = () => {
+    signOut();
+    setAuthedState(false);
+    navigate({ to: "/login" });
+  };
 
   const items = [
     { to: "/", label: t.navHome },
@@ -54,9 +67,15 @@ export function Navbar() {
               );
             })}
           </div>
-          <Link to="/login" className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold border border-gold/40 text-gold hover:bg-gold/10 transition-all">
-            <LogIn size={14} /> {t.login}
-          </Link>
+          {authed ? (
+            <button onClick={onLogout} className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold border border-destructive/40 text-destructive hover:bg-destructive/10 transition-all">
+              <LogOut size={14} /> {lang === "ar" ? "خروج" : lang === "fr" ? "Déconnexion" : "Logout"}
+            </button>
+          ) : (
+            <Link to="/login" className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold border border-gold/40 text-gold hover:bg-gold/10 transition-all">
+              <LogIn size={14} /> {t.login}
+            </Link>
+          )}
           <button className="md:hidden p-2 rounded-lg hover:bg-white/5" onClick={() => setOpen(!open)} aria-label="menu">
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
