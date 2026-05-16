@@ -15,7 +15,7 @@ export const Route = createFileRoute("/signup")({
   component: Signup,
 });
 
-type Role = "player" | "club" | "coach" | "technician";
+
 
 function Signup() {
   const { t, lang } = useLang();
