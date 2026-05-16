@@ -90,6 +90,17 @@ export function Navbar() {
               {n.label}
             </Link>
           ))}
+          {authed ? (
+            <button onClick={() => { setOpen(false); onLogout(); }}
+              className="w-full flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold border border-destructive/40 text-destructive hover:bg-destructive/10">
+              <LogOut size={14} /> {lang === "ar" ? "خروج" : lang === "fr" ? "Déconnexion" : "Logout"}
+            </button>
+          ) : (
+            <Link to="/login" onClick={() => setOpen(false)}
+              className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold border border-gold/40 text-gold hover:bg-gold/10">
+              <LogIn size={14} /> {t.login}
+            </Link>
+          )}
           <div className="flex items-center justify-between pt-2 border-t border-border">
             {(["AR", "FR", "EN"] as const).map(l => {
               const v = l.toLowerCase() as Lang;
