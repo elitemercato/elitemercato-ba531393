@@ -42,12 +42,24 @@ function Home() {
           <img
             src={logo}
             alt="Elite Mercato"
-            className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 object-contain mb-5 md:mb-6 drop-shadow-[0_0_30px_rgba(0,132,61,0.6)]"
+            className="h-36 w-36 sm:h-44 sm:w-44 md:h-56 md:w-56 object-contain mb-6 md:mb-8 drop-shadow-[0_0_40px_rgba(0,132,61,0.65)]"
           />
 
-          <div className="text-gold font-extrabold uppercase tracking-[0.25em] sm:tracking-[0.3em] text-sm sm:text-base md:text-xl leading-none mb-10 md:mb-12 [text-shadow:0_2px_4px_rgba(0,0,0,0.95),0_0_18px_rgba(0,0,0,0.85),0_0_30px_rgba(212,175,55,0.35)]">
-            Become a PRO
+          <div className="relative inline-block font-black uppercase leading-none mb-12 md:mb-16 text-base sm:text-lg md:text-2xl tracking-[0.3em] sm:tracking-[0.35em] [text-shadow:0_2px_4px_rgba(0,0,0,0.95),0_0_22px_rgba(0,0,0,0.85),0_0_38px_rgba(212,175,55,0.45)]">
+            <span className="bg-gradient-to-r from-[#b8862b] via-gold to-[#b8862b] bg-clip-text text-transparent">
+              Become a PRO
+            </span>
+            <span className="block mx-auto mt-3 h-px w-24 bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
           </div>
+
+          <h1 dir="rtl" className="font-extrabold tracking-tight max-w-4xl leading-[1.15] text-4xl sm:text-5xl md:text-7xl [text-shadow:0_2px_20px_rgba(0,0,0,0.7)]">
+            <span className="bg-gradient-to-r from-[#ff6b6b] via-[#f87171] to-[#22c55e] bg-clip-text text-transparent">كن محترفا.</span>{" "}
+            <span className="text-white">وإستثمر في مجالك الرياضي.</span>
+          </h1>
+
+          <p dir="rtl" className="mt-8 max-w-2xl text-base md:text-lg text-white/90 leading-loose [text-shadow:0_1px_12px_rgba(0,0,0,0.8)]">
+            اكتشف فرصك، طوّر أداءك واحمِ حقوقك. أول منصة رياضية جزائرية تدمج ذكاء البيانات بالخبرة الميدانية لبناء مسار إحترافي.
+          </p>
         </div>
       </section>
 
