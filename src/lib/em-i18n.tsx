@@ -113,6 +113,17 @@ export const T = {
     feat2Title: "Plateforme sécurisée", feat2Desc: "Données protégées, commissions garanties",
     feat3Title: "Couverture nationale complète", feat3Desc: "Joueurs de toutes les wilayas, Ligue 1 & LIRF",
     heroBadge: "La nouvelle génération du recrutement algérien",
+    navJoin: "Rejoignez-nous", joinTitle: "Rejoignez Elite Mercato", joinSub: "Choisissez votre type de compte pour commencer",
+    roleLaeb: "Joueur", roleLaebDesc: "Présentez votre talent aux clubs et recruteurs",
+    roleNadi: "Club", roleNadiDesc: "Découvrez et recrutez les meilleurs talents",
+    roleModarib: "Entraîneur", roleModaribDesc: "Proposez votre expertise",
+    roleTaqani: "Technicien", roleTaqaniDesc: "Services médicaux, juridiques, médiatiques",
+    selectRole: "Choisissez votre rôle", fullName: "Nom complet", email: "Email",
+    phone: "Téléphone", password: "Mot de passe", confirmPwd: "Confirmer le mot de passe",
+    wilaya: "Wilaya", createAccount: "Créer le compte", haveAccount: "Déjà un compte ?",
+    signinTitle: "Connexion", signinSub: "Bon retour sur votre plateforme",
+    noAccount: "Pas encore de compte ?", forgotPwd: "Mot de passe oublié ?", signin: "Se connecter",
+    backHome: "Retour à l'accueil",
   },
 } as const;
 
