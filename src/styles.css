@@ -80,3 +80,16 @@
   }
   [dir="rtl"] body { font-family: "Segoe UI", Tahoma, Arial, sans-serif; }
 }
+
+@keyframes em-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.em-shimmer {
+  background-image: linear-gradient(90deg, #b8862b 0%, #d4af37 25%, #fff4c2 50%, #d4af37 75%, #b8862b 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: em-shimmer 3.5s linear infinite;
+}
