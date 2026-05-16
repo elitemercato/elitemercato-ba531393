@@ -15,6 +15,7 @@ export function Navbar() {
     { to: "/dashboard", label: t.navDashboard },
     { to: "/marketplace", label: t.navMarket },
     { to: "/pricing", label: t.navPricing },
+    { to: "/signup", label: t.navJoin },
   ];
 
   return (
