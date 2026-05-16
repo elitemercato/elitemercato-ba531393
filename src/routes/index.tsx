@@ -39,18 +39,18 @@ function Home() {
         <div className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-gold/5 blur-3xl -z-10" />
 
         <div className="max-w-7xl mx-auto px-6 pt-20 pb-24 text-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-gold/30 bg-gold/5 text-gold text-xs font-semibold mb-8">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-gold/30 bg-background/60 backdrop-blur-md text-gold text-xs font-semibold mb-8 shadow-lg">
             <Sparkles size={14} /> {t.heroBadge}
           </div>
 
-          <img src={logo} alt="Elite Mercato" className="h-28 w-28 object-contain mx-auto mb-6 drop-shadow-[0_0_30px_rgba(0,132,61,0.4)]" />
+          <img src={logo} alt="Elite Mercato" className="h-28 w-28 object-contain mx-auto mb-6 drop-shadow-[0_0_30px_rgba(0,132,61,0.6)]" />
 
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight max-w-4xl mx-auto leading-tight">
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight max-w-4xl mx-auto leading-tight [text-shadow:0_2px_20px_rgba(0,0,0,0.6)]">
             <span className="bg-gradient-to-br from-foreground via-foreground to-primary bg-clip-text text-transparent">
               {t.tagline}
             </span>
           </h1>
-          <p className="mt-6 max-w-2xl mx-auto text-base md:text-lg text-muted-foreground">
+          <p className="mt-6 max-w-2xl mx-auto text-base md:text-lg text-foreground/90 [text-shadow:0_1px_12px_rgba(0,0,0,0.7)]">
             {t.subtagline}
           </p>
 
