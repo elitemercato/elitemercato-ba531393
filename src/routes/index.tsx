@@ -23,6 +23,17 @@ function Home() {
     <div>
       {/* HERO */}
       <section className="relative overflow-hidden">
+        <video
+          className="absolute inset-0 w-full h-full object-cover -z-20"
+          src="/videos/hero.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 -z-10 bg-background/70" />
         <div className="absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
         <div className="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-primary/20 blur-3xl -z-10" />
         <div className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-gold/10 blur-3xl -z-10" />
