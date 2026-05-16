@@ -2,6 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowLeft, Briefcase, Building2, GraduationCap, Stethoscope, User } from "lucide-react";
 import { useLang } from "@/lib/em-i18n";
+import { redirectForRole, setRole as persistRole, type Role } from "@/lib/em-auth";
 import logo from "@/assets/elite-mercato-logo.png";
 
 export const Route = createFileRoute("/signup")({
@@ -14,7 +15,7 @@ export const Route = createFileRoute("/signup")({
   component: Signup,
 });
 
-type Role = "player" | "club" | "coach" | "technician";
+
 
 function Signup() {
   const { t, lang } = useLang();
@@ -32,8 +33,10 @@ function Signup() {
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!role) return;
+    persistRole(role);
     setSubmitted(true);
-    setTimeout(() => navigate({ to: "/" }), 1500);
+    setTimeout(() => redirectForRole(role, navigate), 900);
   };
 
   return (
