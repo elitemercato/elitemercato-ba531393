@@ -89,6 +89,8 @@ export const T = {
     backHome: "Back to home",
     heroTitle1: "Become a PRO.", heroTitle2: "Invest in your sports career.",
     heroDesc: "Discover opportunities, develop your performance, and protect your rights. Algeria's first sports platform combining data intelligence with field expertise to build a professional path.",
+    featuresTitle: "Why Elite Mercato?", featuresSubtitle: "An integrated ecosystem combining smart scouting, legal protection, and field services in a single platform.",
+    servicesTitle: "Professional Services On Demand", servicesSubtitle: "Connect directly with certified experts in legal, coaching, medical and media fields.",
   },
   fr: {
     brand: "Elite Mercato", tagline: "La Plateforme Sport-Tech N°1 d'Algérie",
