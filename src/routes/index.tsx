@@ -33,8 +33,10 @@ function Home() {
           preload="auto"
           aria-hidden="true"
         />
-        <div className="absolute inset-0 -z-10 bg-background/40 sm:bg-background/30" />
-        <div className="absolute inset-x-0 bottom-0 h-2/3 -z-10 bg-gradient-to-t from-background via-background/70 to-transparent" />
+        {/* WCAG AA scrim: guarantees ≥3:1 contrast for large text on any video frame */}
+        <div className="absolute inset-0 -z-10 bg-background/70 sm:bg-background/60" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.55),transparent_70%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-2/3 -z-10 bg-gradient-to-t from-background via-background/80 to-transparent" />
         <div className="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-primary/10 blur-3xl -z-10" />
         <div className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-gold/5 blur-3xl -z-10" />
 
