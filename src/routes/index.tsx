@@ -33,10 +33,10 @@ function Home() {
           preload="auto"
           aria-hidden="true"
         />
-        <div className="absolute inset-0 -z-10 bg-background/70" />
-        <div className="absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
-        <div className="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-primary/20 blur-3xl -z-10" />
-        <div className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-gold/10 blur-3xl -z-10" />
+        <div className="absolute inset-0 -z-10 bg-background/25" />
+        <div className="absolute inset-x-0 bottom-0 h-1/2 -z-10 bg-gradient-to-t from-background/70 to-transparent" />
+        <div className="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-primary/10 blur-3xl -z-10" />
+        <div className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-gold/5 blur-3xl -z-10" />
 
         <div className="max-w-7xl mx-auto px-6 pt-20 pb-24 text-center">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-gold/30 bg-gold/5 text-gold text-xs font-semibold mb-8">
