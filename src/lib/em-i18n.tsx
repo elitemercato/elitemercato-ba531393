@@ -85,6 +85,8 @@ export const T = {
     signinTitle: "Sign In", signinSub: "Welcome back to your platform",
     noAccount: "Don't have an account?", forgotPwd: "Forgot password?", signin: "Sign In",
     backHome: "Back to home",
+    heroTitle1: "Become a PRO.", heroTitle2: "Invest in your sports career.",
+    heroDesc: "Discover opportunities, develop your performance, and protect your rights. Algeria's first sports platform combining data intelligence with field expertise to build a professional path.",
   },
   fr: {
     brand: "Elite Mercato", tagline: "La Plateforme Sport-Tech N°1 d'Algérie",
