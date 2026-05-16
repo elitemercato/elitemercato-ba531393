@@ -54,9 +54,9 @@ export function Navbar() {
               );
             })}
           </div>
-          <button className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold border border-gold/40 text-gold hover:bg-gold/10 transition-all">
+          <Link to="/login" className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold border border-gold/40 text-gold hover:bg-gold/10 transition-all">
             <LogIn size={14} /> {t.login}
-          </button>
+          </Link>
           <button className="md:hidden p-2 rounded-lg hover:bg-white/5" onClick={() => setOpen(!open)} aria-label="menu">
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
