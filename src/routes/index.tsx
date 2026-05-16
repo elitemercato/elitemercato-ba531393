@@ -38,19 +38,23 @@ function Home() {
         <div className="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-primary/10 blur-3xl -z-10" />
         <div className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-gold/5 blur-3xl -z-10" />
 
-        <div className="max-w-7xl mx-auto px-6 pt-20 pb-24 text-center">
-          <img src={logo} alt="Elite Mercato" className="h-28 w-28 object-contain mx-auto mb-4 drop-shadow-[0_0_30px_rgba(0,132,61,0.6)]" />
+        <div className="max-w-7xl mx-auto px-6 pt-16 md:pt-24 pb-24 text-center flex flex-col items-center">
+          <img
+            src={logo}
+            alt="Elite Mercato"
+            className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 object-contain mb-5 md:mb-6 drop-shadow-[0_0_30px_rgba(0,132,61,0.6)]"
+          />
 
-          <div className="text-gold font-extrabold tracking-[0.2em] text-lg md:text-2xl mb-8 [text-shadow:0_2px_18px_rgba(0,0,0,0.7)]">
+          <div className="text-gold font-extrabold uppercase tracking-[0.25em] sm:tracking-[0.3em] text-sm sm:text-base md:text-xl leading-none mb-10 md:mb-12 [text-shadow:0_2px_18px_rgba(0,0,0,0.7)]">
             Become a PRO
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight max-w-4xl mx-auto leading-tight [text-shadow:0_2px_20px_rgba(0,0,0,0.6)]">
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight max-w-4xl leading-tight [text-shadow:0_2px_20px_rgba(0,0,0,0.6)]">
             <span className="bg-gradient-to-br from-foreground via-foreground to-primary bg-clip-text text-transparent">
               {t.tagline}
             </span>
           </h1>
-          <p className="mt-6 max-w-2xl mx-auto text-base md:text-lg text-foreground/90 [text-shadow:0_1px_12px_rgba(0,0,0,0.7)]">
+          <p className="mt-6 max-w-2xl text-base md:text-lg text-foreground/90 [text-shadow:0_1px_12px_rgba(0,0,0,0.7)]">
             {t.subtagline}
           </p>
 
