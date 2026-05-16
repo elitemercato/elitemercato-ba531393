@@ -39,11 +39,11 @@ function Home() {
         <div className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-gold/5 blur-3xl -z-10" />
 
         <div className="max-w-7xl mx-auto px-6 pt-20 pb-24 text-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-gold/30 bg-background/60 backdrop-blur-md text-gold text-xs font-semibold mb-8 shadow-lg">
-            <Sparkles size={14} /> {t.heroBadge}
-          </div>
+          <img src={logo} alt="Elite Mercato" className="h-28 w-28 object-contain mx-auto mb-4 drop-shadow-[0_0_30px_rgba(0,132,61,0.6)]" />
 
-          <img src={logo} alt="Elite Mercato" className="h-28 w-28 object-contain mx-auto mb-6 drop-shadow-[0_0_30px_rgba(0,132,61,0.6)]" />
+          <div className="text-gold font-extrabold tracking-[0.2em] text-lg md:text-2xl mb-8 [text-shadow:0_2px_18px_rgba(0,0,0,0.7)]">
+            Become a PRO
+          </div>
 
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight max-w-4xl mx-auto leading-tight [text-shadow:0_2px_20px_rgba(0,0,0,0.6)]">
             <span className="bg-gradient-to-br from-foreground via-foreground to-primary bg-clip-text text-transparent">
