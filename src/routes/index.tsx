@@ -46,7 +46,7 @@ function Home() {
           />
 
           <div className="relative inline-block font-black uppercase leading-none mb-12 md:mb-16 text-base sm:text-lg md:text-2xl tracking-[0.3em] sm:tracking-[0.35em] [text-shadow:0_2px_4px_rgba(0,0,0,0.95),0_0_22px_rgba(0,0,0,0.85),0_0_38px_rgba(212,175,55,0.45)]">
-            <span className="bg-gradient-to-r from-[#b8862b] via-gold to-[#b8862b] bg-clip-text text-transparent">
+            <span className="em-shimmer">
               Become a PRO
             </span>
             <span className="block mx-auto mt-3 h-px w-24 bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
