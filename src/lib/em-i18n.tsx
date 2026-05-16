@@ -134,6 +134,8 @@ export const T = {
     backHome: "Retour à l'accueil",
     heroTitle1: "Devenez un PRO.", heroTitle2: "Investissez dans votre carrière sportive.",
     heroDesc: "Découvrez vos opportunités, développez vos performances et protégez vos droits. La première plateforme sportive algérienne alliant intelligence des données et expertise du terrain pour bâtir un parcours professionnel.",
+    featuresTitle: "Pourquoi Elite Mercato ?", featuresSubtitle: "Un écosystème intégré qui combine recrutement intelligent, protection juridique et services de terrain dans une seule plateforme.",
+    servicesTitle: "Services professionnels à la demande", servicesSubtitle: "Connectez-vous directement avec des experts certifiés dans les domaines juridique, sportif, médical et médiatique.",
   },
 } as const;
 
