@@ -33,8 +33,10 @@ function Signup() {
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!role) return;
+    persistRole(role);
     setSubmitted(true);
-    setTimeout(() => navigate({ to: "/" }), 1500);
+    setTimeout(() => redirectForRole(role, navigate), 900);
   };
 
   return (
