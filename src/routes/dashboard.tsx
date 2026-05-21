@@ -1,108 +1,115 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Filter, Search } from "lucide-react";
-import { useState } from "react";
-import { PLAYERS, playerName, playerWilaya } from "@/lib/em-data";
-import { useLang } from "@/lib/em-i18n";
-import { PlayerCard } from "@/components/em/PlayerCard";
+import { BadgeCheck, Crown, Footprints, Play, Ruler, Weight, Building2, RefreshCw } from "lucide-react";
 import { RequireAuth } from "@/components/em/RequireAuth";
 
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
-      { title: "Club Dashboard — Elite Mercato" },
-      { name: "description", content: "Browse Algerian football talents with advanced filters: position, wilaya, market value." },
+      { title: "الحقيبة الرقمية — Elite Mercato" },
+      { name: "description", content: "الحقيبة الرقمية الاحترافية للاعبين والمدربين على منصة Elite Mercato." },
     ],
   }),
   component: () => <RequireAuth><Dashboard /></RequireAuth>,
 });
 
 function Dashboard() {
-  const { t, lang } = useLang();
-  const [pos, setPos] = useState("");
-  const [wil, setWil] = useState("");
-  const [val, setVal] = useState("");
-  const [q, setQ] = useState("");
-
-  const filtered = PLAYERS.filter(p => {
-    const name = playerName(p, lang).toLowerCase();
-    if (q && !name.includes(q.toLowerCase())) return false;
-    if (pos && p.position !== pos) return false;
-    if (wil && playerWilaya(p, lang) !== wil) return false;
-    if (val === "low" && p.value >= 5_000_000) return false;
-    if (val === "mid" && (p.value < 5_000_000 || p.value > 15_000_000)) return false;
-    if (val === "high" && p.value <= 15_000_000) return false;
-    return true;
-  });
-
-  const wilayas = [...new Set(PLAYERS.map(p => playerWilaya(p, lang)))];
-  const positions = [...new Set(PLAYERS.map(p => p.position))];
-
   return (
-    <div className="max-w-7xl mx-auto px-6 py-10">
-      <div className="mb-8">
-        <h1 className="text-3xl font-extrabold">{t.navDashboard}</h1>
-        <p className="text-sm text-muted-foreground mt-1">Ligue 1 Algérie · LIRF · {new Date().getFullYear()}</p>
-      </div>
-
-      <div className="grid lg:grid-cols-[280px_1fr] gap-6">
-        <aside className="lg:sticky lg:top-20 lg:self-start rounded-2xl border border-border bg-card p-5 space-y-4">
-          <div className="flex items-center gap-2 font-bold">
-            <Filter size={16} className="text-primary" /> {t.filterTitle}
+    <div dir="rtl" className="font-tajawal min-h-screen bg-[#F3F4F6] text-[#0F172A]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-6">
+        <header className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1E3A8A]">الحقيبة الرقمية</h1>
+            <p className="text-sm text-slate-500 mt-1">ملفك الاحترافي الموحّد — لاعبين ومدربين</p>
           </div>
+          <span className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#1E3A8A]/10 text-[#1E3A8A] text-xs font-bold">
+            <Crown size={14} /> Elite Mercato
+          </span>
+        </header>
 
-          <div className="relative">
-            <Search size={14} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
-            <input value={q} onChange={e => setQ(e.target.value)}
-              placeholder={lang === "ar" ? "بحث..." : lang === "fr" ? "Recherche..." : "Search..."}
-              className="w-full bg-background border border-border rounded-lg pl-8 pr-3 py-2 text-sm focus:outline-none focus:border-primary" />
-          </div>
+        <div className="grid lg:grid-cols-3 gap-6">
+          {/* Profile card */}
+          <section className="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+            <div className="h-28 bg-gradient-to-l from-[#1E3A8A] via-[#1E3A8A] to-[#00BCD4]" />
+            <div className="px-6 pb-6 -mt-12">
+              <div className="flex flex-col sm:flex-row gap-4 sm:items-end">
+                <img
+                  src="https://api.dicebear.com/9.x/initials/svg?seed=AK&backgroundColor=1E3A8A"
+                  alt="صورة اللاعب"
+                  className="h-24 w-24 rounded-2xl border-4 border-white shadow-md object-cover bg-white"
+                />
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <h2 className="text-xl font-extrabold">أيوب خلوامة</h2>
+                    <BadgeCheck className="text-[#00BCD4]" size={18} />
+                  </div>
+                  <p className="text-sm text-slate-600 mt-0.5">لاعب وسط هجومي · اتحاد البليدة</p>
+                  <div className="mt-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#4ADE80]/15 text-[#15803D] text-xs font-bold">
+                    <Crown size={14} /> اشتراك احترافي مفعّل
+                  </div>
+                </div>
+              </div>
 
-          <Field label={t.filterPos}>
-            <select value={pos} onChange={e => setPos(e.target.value)} className={selectCls}>
-              <option value="">{t.allPos}</option>
-              {positions.map(p => <option key={p} value={p}>{t.positions[p] || p}</option>)}
-            </select>
-          </Field>
-
-          <Field label={t.filterWilaya}>
-            <select value={wil} onChange={e => setWil(e.target.value)} className={selectCls}>
-              <option value="">{t.allWilaya}</option>
-              {wilayas.map(w => <option key={w} value={w}>{w}</option>)}
-            </select>
-          </Field>
-
-          <Field label={t.filterValue}>
-            <select value={val} onChange={e => setVal(e.target.value)} className={selectCls}>
-              <option value="">{t.allVal}</option>
-              <option value="low">{t.val100}</option>
-              <option value="mid">{t.val500}</option>
-              <option value="high">{t.val1000}</option>
-            </select>
-          </Field>
-        </aside>
-
-        <div>
-          <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">
-            {filtered.map(p => <PlayerCard key={p.id} p={p} />)}
-          </div>
-          {filtered.length === 0 && (
-            <div className="text-center py-20 text-muted-foreground border border-dashed border-border rounded-2xl">
-              {t.noResults}
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-3 mt-6">
+                <Stat icon={Ruler} label="الطول" value="1.82 م" />
+                <Stat icon={Weight} label="الوزن" value="76 كغ" />
+                <Stat icon={Footprints} label="القدم المفضّلة" value="اليمنى" />
+              </div>
             </div>
-          )}
+          </section>
+
+          {/* Subscription CTA */}
+          <aside className="bg-gradient-to-br from-[#1E3A8A] to-[#0F2766] text-white rounded-2xl p-6 shadow-md flex flex-col">
+            <span className="text-xs font-bold opacity-80">باقة الرياضيين</span>
+            <div className="mt-2 text-3xl font-extrabold">9,900 <span className="text-base font-bold opacity-90">دج</span></div>
+            <div className="text-xs opacity-80">/ سنوياً</div>
+            <ul className="mt-4 space-y-2 text-sm">
+              <li className="flex items-center gap-2"><BadgeCheck size={16} className="text-[#4ADE80]" /> ملف رقمي احترافي</li>
+              <li className="flex items-center gap-2"><BadgeCheck size={16} className="text-[#4ADE80]" /> ظهور أمام الأندية</li>
+              <li className="flex items-center gap-2"><BadgeCheck size={16} className="text-[#4ADE80]" /> وصول كامل للمتجر</li>
+            </ul>
+            <button className="mt-5 inline-flex items-center justify-center gap-2 bg-[#4ADE80] hover:bg-[#22c55e] text-[#0F172A] font-extrabold rounded-xl py-3 transition">
+              <RefreshCw size={16} /> تجديد الاشتراك
+            </button>
+          </aside>
+        </div>
+
+        {/* Highlight reel */}
+        <section className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+          <div className="p-5 flex items-center justify-between">
+            <h3 className="font-extrabold text-lg">أبرز اللقطات</h3>
+            <span className="text-xs text-slate-500">Highlight Reels</span>
+          </div>
+          <div className="relative aspect-video bg-gradient-to-br from-slate-900 to-[#1E3A8A] flex items-center justify-center">
+            <button className="h-16 w-16 rounded-full bg-white/95 hover:bg-white text-[#1E3A8A] flex items-center justify-center shadow-xl transition hover:scale-105">
+              <Play size={28} className="ms-1" fill="currentColor" />
+            </button>
+            <span className="absolute bottom-3 right-4 text-white/80 text-xs">02:34 · HD</span>
+          </div>
+        </section>
+
+        {/* B2B banner */}
+        <div className="rounded-2xl border border-[#00BCD4]/30 bg-[#00BCD4]/10 px-5 py-4 flex items-center gap-3">
+          <div className="h-10 w-10 rounded-xl bg-[#00BCD4] text-white flex items-center justify-center shrink-0">
+            <Building2 size={20} />
+          </div>
+          <p className="text-sm text-slate-700">
+            <span className="font-bold">للأندية:</span> اشتراك النادي السنوي بسعر
+            <span className="font-extrabold text-[#1E3A8A]"> 149,000 دج </span>
+            — وصول كامل لقاعدة اللاعبين والخدمات.
+          </p>
         </div>
       </div>
     </div>
   );
 }
 
-const selectCls = "w-full bg-background border border-border rounded-lg px-2.5 py-2 text-sm focus:outline-none focus:border-primary";
-
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Stat({ icon: Icon, label, value }: { icon: React.ElementType; label: string; value: string }) {
   return (
-    <div>
-      <label className="block text-xs font-semibold text-muted-foreground mb-1.5">{label}</label>
-      {children}
+    <div className="rounded-xl bg-slate-50 border border-slate-200 p-3 text-center">
+      <Icon size={18} className="mx-auto text-[#1E3A8A]" />
+      <div className="mt-1 text-[11px] text-slate-500">{label}</div>
+      <div className="font-extrabold text-sm mt-0.5">{value}</div>
     </div>
   );
 }
