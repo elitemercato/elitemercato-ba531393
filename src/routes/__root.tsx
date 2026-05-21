@@ -7,11 +7,14 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { useEffect } from "react";
 
 import appCss from "../styles.css?url";
 import { LangProvider } from "@/lib/em-i18n";
 import { Navbar } from "@/components/em/Navbar";
 import { Footer } from "@/components/em/Footer";
+import { getRemember } from "@/lib/em-auth";
+import { supabase } from "@/integrations/supabase/client";
 
 function NotFoundComponent() {
   return (
@@ -80,6 +83,19 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  useEffect(() => {
+    // "Remember me" = false → sign out when the tab/window is closed
+    const onPageHide = () => {
+      if (!getRemember()) {
+        // fire-and-forget; navigator may not await this
+        void supabase.auth.signOut();
+      }
+    };
+    window.addEventListener("pagehide", onPageHide);
+    return () => window.removeEventListener("pagehide", onPageHide);
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <LangProvider>

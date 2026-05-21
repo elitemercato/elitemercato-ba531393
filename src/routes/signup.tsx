@@ -2,7 +2,8 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowLeft, Briefcase, Building2, GraduationCap, Stethoscope, User } from "lucide-react";
 import { useLang } from "@/lib/em-i18n";
-import { redirectForRole, setAuthed, setRole as persistRole, type Role } from "@/lib/em-auth";
+import { redirectForRole, setRole as persistRole, setRemember, type Role } from "@/lib/em-auth";
+import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/elite-mercato-logo.png";
 
 export const Route = createFileRoute("/signup")({
@@ -15,14 +16,14 @@ export const Route = createFileRoute("/signup")({
   component: Signup,
 });
 
-
-
 function Signup() {
   const { t, lang } = useLang();
   const navigate = useNavigate();
   const [role, setRole] = useState<Role | null>(null);
   const [form, setForm] = useState({ name: "", email: "", phone: "", password: "", confirm: "" });
-  const [submitted, setSubmitted] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [info, setInfo] = useState<string | null>(null);
 
   const roles: { id: Role; label: string; desc: string; Icon: typeof User; color: string }[] = [
     { id: "player", label: t.roleLaeb, desc: t.roleLaebDesc, Icon: User, color: "from-primary/30 to-primary/10 text-primary" },
@@ -31,13 +32,45 @@ function Signup() {
     { id: "technician", label: t.roleTaqani, desc: t.roleTaqaniDesc, Icon: Stethoscope, color: "from-primary/30 to-primary/10 text-primary" },
   ];
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!role) return;
-    persistRole(role);
-    setAuthed(true);
-    setSubmitted(true);
-    setTimeout(() => redirectForRole(role, navigate), 900);
+    setErr(null);
+    setInfo(null);
+    if (form.password !== form.confirm) {
+      setErr(lang === "ar" ? "كلمتا المرور غير متطابقتين" : "Passwords do not match");
+      return;
+    }
+    setLoading(true);
+    try {
+      persistRole(role);
+      setRemember(true);
+      const redirectUrl = `${window.location.origin}/`;
+      const { data, error } = await supabase.auth.signUp({
+        email: form.email,
+        password: form.password,
+        options: {
+          emailRedirectTo: redirectUrl,
+          data: { full_name: form.name, phone: form.phone, role },
+        },
+      });
+      if (error) throw error;
+      if (data.session) {
+        redirectForRole(role, navigate);
+      } else {
+        setInfo(
+          lang === "ar"
+            ? "تم إنشاء الحساب. تحقق من بريدك الإلكتروني لتأكيد الحساب."
+            : lang === "fr"
+              ? "Compte créé. Vérifiez votre email pour confirmer."
+              : "Account created. Check your inbox to confirm your email."
+        );
+      }
+    } catch (e: any) {
+      setErr(e?.message ?? (lang === "ar" ? "فشل إنشاء الحساب" : "Sign-up failed"));
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -67,11 +100,6 @@ function Signup() {
               </button>
             ))}
           </div>
-        ) : submitted ? (
-          <div className="rounded-2xl border border-primary/40 bg-primary/10 p-8 text-center">
-            <div className="text-primary font-bold text-lg">✓ {t.createAccount}</div>
-            <p className="text-sm text-muted-foreground mt-2">{t.fullName}: {form.name}</p>
-          </div>
         ) : (
           <form onSubmit={onSubmit} className="rounded-2xl border border-border bg-card p-6 md:p-8 space-y-4 max-w-xl mx-auto">
             <div className="flex items-center justify-between mb-2">
@@ -83,15 +111,26 @@ function Signup() {
               </button>
             </div>
 
+            {err && (
+              <div className="rounded-lg border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive">
+                {err}
+              </div>
+            )}
+            {info && (
+              <div className="rounded-lg border border-primary/40 bg-primary/10 px-3 py-2 text-sm text-primary">
+                {info}
+              </div>
+            )}
+
             <Field label={t.fullName} value={form.name} onChange={v => setForm({ ...form, name: v })} required />
             <Field label={t.email} type="email" value={form.email} onChange={v => setForm({ ...form, email: v })} required />
             <Field label={t.phone} type="tel" value={form.phone} onChange={v => setForm({ ...form, phone: v })} />
             <Field label={t.password} type="password" value={form.password} onChange={v => setForm({ ...form, password: v })} required />
             <Field label={t.confirmPwd} type="password" value={form.confirm} onChange={v => setForm({ ...form, confirm: v })} required />
 
-            <button type="submit"
-              className="w-full px-6 py-3 rounded-xl font-bold text-primary-foreground bg-gradient-to-r from-primary to-accent hover:scale-[1.02] transition-transform shadow-[var(--shadow-elite)]">
-              {t.createAccount}
+            <button type="submit" disabled={loading}
+              className="w-full px-6 py-3 rounded-xl font-bold text-primary-foreground bg-gradient-to-r from-primary to-accent hover:scale-[1.02] transition-transform shadow-[var(--shadow-elite)] disabled:opacity-60 disabled:cursor-not-allowed">
+              {loading ? "…" : t.createAccount}
             </button>
 
             <p className="text-center text-sm text-muted-foreground">

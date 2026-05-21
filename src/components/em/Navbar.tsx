@@ -3,7 +3,8 @@ import { LogIn, LogOut, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLang } from "@/lib/em-i18n";
 import type { Lang } from "@/lib/em-data";
-import { isAuthed, signOut } from "@/lib/em-auth";
+import { signOut } from "@/lib/em-auth";
+import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/elite-mercato-logo.png";
 
 export function Navbar() {
@@ -14,11 +15,15 @@ export function Navbar() {
   const [authed, setAuthedState] = useState(false);
 
   useEffect(() => {
-    setAuthedState(isAuthed());
+    supabase.auth.getSession().then(({ data }) => setAuthedState(!!data.session));
+    const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => {
+      setAuthedState(!!session);
+    });
+    return () => sub.subscription.unsubscribe();
   }, [location.pathname]);
 
-  const onLogout = () => {
-    signOut();
+  const onLogout = async () => {
+    await signOut();
     setAuthedState(false);
     navigate({ to: "/login" });
   };
