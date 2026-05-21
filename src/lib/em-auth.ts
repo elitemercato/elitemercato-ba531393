@@ -1,39 +1,47 @@
 import type { useNavigate } from "@tanstack/react-router";
+import { supabase } from "@/integrations/supabase/client";
 
 export type Role = "player" | "club" | "coach" | "technician";
 
-const KEY = "em-role";
-const AUTH_KEY = "em-authed";
+const ROLE_KEY = "em-role";
+const REMEMBER_KEY = "em-remember";
 
 export const setRole = (r: Role) => {
-  if (typeof window !== "undefined") localStorage.setItem(KEY, r);
+  if (typeof window !== "undefined") localStorage.setItem(ROLE_KEY, r);
 };
 
 export const getRole = (): Role | null => {
   if (typeof window === "undefined") return null;
-  const v = localStorage.getItem(KEY);
+  const v = localStorage.getItem(ROLE_KEY);
   return v === "player" || v === "club" || v === "coach" || v === "technician" ? v : null;
 };
 
 export const clearRole = () => {
-  if (typeof window !== "undefined") localStorage.removeItem(KEY);
+  if (typeof window !== "undefined") localStorage.removeItem(ROLE_KEY);
 };
 
-export const setAuthed = (v: boolean) => {
+export const setRemember = (v: boolean) => {
   if (typeof window === "undefined") return;
-  if (v) localStorage.setItem(AUTH_KEY, "1");
-  else localStorage.removeItem(AUTH_KEY);
+  if (v) localStorage.setItem(REMEMBER_KEY, "1");
+  else localStorage.setItem(REMEMBER_KEY, "0");
 };
 
-export const isAuthed = (): boolean => {
-  if (typeof window === "undefined") return false;
-  return localStorage.getItem(AUTH_KEY) === "1";
+export const getRemember = (): boolean => {
+  if (typeof window === "undefined") return true;
+  // default to true if never set
+  return localStorage.getItem(REMEMBER_KEY) !== "0";
 };
 
-export const signOut = () => {
-  if (typeof window === "undefined") return;
-  localStorage.removeItem(AUTH_KEY);
-  localStorage.removeItem(KEY);
+export const signOut = async () => {
+  try {
+    await supabase.auth.signOut();
+  } catch {
+    /* noop */
+  }
+  if (typeof window !== "undefined") {
+    localStorage.removeItem(ROLE_KEY);
+    localStorage.removeItem(REMEMBER_KEY);
+  }
 };
 
 type Nav = ReturnType<typeof useNavigate>;
