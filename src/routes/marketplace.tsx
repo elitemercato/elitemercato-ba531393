@@ -18,8 +18,6 @@ type Service = {
   desc: string;
   price: number;
   icon: React.ElementType;
-  gradient: string;
-  accent: string;
 };
 
 const SERVICES: Service[] = [
@@ -29,8 +27,6 @@ const SERVICES: Service[] = [
     desc: "تقييم طبي دقيق للإصابات وتأهيل اللاعبين قبل الانتداب.",
     price: 15000,
     icon: HeartPulse,
-    gradient: "from-rose-500 to-rose-600",
-    accent: "hover:ring-rose-300",
   },
   {
     category: "Elite Media · الخدمات الإعلامية",
@@ -38,8 +34,6 @@ const SERVICES: Service[] = [
     desc: "تصميم فيديو احترافي يستعرض أفضل مهاراتك لتسويق ملفك الرياضي.",
     price: 8000,
     icon: Video,
-    gradient: "from-[#00BCD4] to-cyan-600",
-    accent: "hover:ring-cyan-300",
   },
   {
     category: "Elite Legal · الاستشارات القانونية",
@@ -47,8 +41,6 @@ const SERVICES: Service[] = [
     desc: "حماية حقوقك عبر استشارة محامين مختصين في النزاعات الكروية ولوائح الفيفا.",
     price: 12000,
     icon: Scale,
-    gradient: "from-[#1E3A8A] to-indigo-700",
-    accent: "hover:ring-indigo-300",
   },
   {
     category: "Elite Technical · الخدمات الفنية والتقنية",
@@ -56,23 +48,21 @@ const SERVICES: Service[] = [
     desc: "تقرير فني شامل حول مردود اللاعب باستخدام تقنيات التحليل الحديثة.",
     price: 5000,
     icon: LineChart,
-    gradient: "from-[#4ADE80] to-green-600",
-    accent: "hover:ring-green-300",
   },
 ];
 
 function Marketplace() {
   return (
-    <div dir="rtl" className="font-tajawal min-h-screen bg-[#F3F4F6] text-[#0F172A]">
+    <div dir="rtl" className="font-tajawal min-h-screen bg-background text-foreground">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-8">
         <header className="text-right">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#1E3A8A]/10 text-[#1E3A8A] text-xs font-bold mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold/15 text-gold text-xs font-bold mb-3 border border-gold/30">
             <Sparkles size={14} /> متجر Elite Mercato
           </div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E3A8A]">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary">
             خدمات احترافية لتطوير مسارك الرياضي
           </h1>
-          <p className="text-sm sm:text-base text-slate-500 mt-2 max-w-2xl">
+          <p className="text-sm sm:text-base text-muted-foreground mt-2 max-w-2xl">
             اختر من بين أفضل الخدمات الطبية، الإعلامية، القانونية، والتقنية المقدمة من كفاءات معتمدة.
           </p>
         </header>
@@ -91,33 +81,39 @@ function ServiceCard({ s, index }: { s: Service; index: number }) {
   const Icon = s.icon;
   return (
     <article
-      className={`group bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:ring-4 ${s.accent} flex flex-col animate-fade-in`}
+      className="group bg-card rounded-2xl border border-border shadow-sm overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-gold/50 flex flex-col animate-fade-in"
       style={{ animationDelay: `${index * 100}ms`, animationFillMode: "both" }}
     >
-      <div className={`bg-gradient-to-l ${s.gradient} p-5 flex items-center justify-between text-white`}>
+      <div
+        className="p-5 flex items-center justify-between text-primary-foreground"
+        style={{ background: "var(--gradient-primary)" }}
+      >
         <span className="text-[11px] font-bold uppercase tracking-wider opacity-95 text-right">
           {s.category}
         </span>
-        <div className="h-12 w-12 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-transform">
+        <div className="h-12 w-12 rounded-xl bg-gold/20 backdrop-blur flex items-center justify-center text-gold group-hover:scale-110 group-hover:rotate-3 transition-transform">
           <Icon size={22} />
         </div>
       </div>
 
       <div className="p-5 space-y-3 flex-1 flex flex-col text-right">
-        <div className="inline-flex self-end items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#4ADE80]/15 text-[#16a34a] text-[10px] font-bold">
+        <div className="inline-flex self-end items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/15 text-primary text-[10px] font-bold border border-primary/30">
           <ShieldCheck size={11} /> شامل عمولة المنصة
         </div>
 
-        <h3 className="font-extrabold text-lg leading-snug text-[#0F172A]">{s.title}</h3>
-        <p className="text-sm text-slate-600 leading-relaxed flex-1">{s.desc}</p>
+        <h3 className="font-extrabold text-lg leading-snug text-foreground">{s.title}</h3>
+        <p className="text-sm text-muted-foreground leading-relaxed flex-1">{s.desc}</p>
 
-        <div className="pt-4 border-t border-slate-100 space-y-3">
+        <div className="pt-4 border-t border-border space-y-3">
           <div className="text-right">
-            <div className="text-2xl font-extrabold text-[#1E3A8A]">
+            <div className="text-2xl font-extrabold text-gold">
               {s.price.toLocaleString("fr-DZ")} <span className="text-sm font-bold">دج</span>
             </div>
           </div>
-          <button className="w-full px-4 py-2.5 rounded-xl bg-[#1E3A8A] hover:bg-[#0F2766] text-white text-sm font-extrabold transition-all shadow-md hover:shadow-lg active:scale-95">
+          <button
+            className="w-full px-4 py-2.5 rounded-xl text-primary-foreground text-sm font-extrabold transition-all hover:brightness-110 active:scale-95"
+            style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-elite)" }}
+          >
             طلب الخدمة
           </button>
         </div>
