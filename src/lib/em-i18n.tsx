@@ -133,7 +133,7 @@ export const T = {
     season: "Saison", yrs: "ans",
     feat1Title: "Recrutement basé sur les données", feat1Desc: "Filtres avancés, stats précises et comparaison en temps réel",
     feat2Title: "Plateforme sécurisée", feat2Desc: "Données protégées, commissions garanties",
-    feat3Title: "Couverture nationale complète", feat3Desc: "Joueurs de toutes les wilayas, Ligue 1 & LIRF",
+    feat3Title: "Couverture nationale complète", feat3Desc: "Du Nord au Sud, de l'Est à l'Ouest… tout le monde est ici",
     heroBadge: "La nouvelle génération du recrutement algérien",
     navJoin: "Rejoignez-nous", joinTitle: "Rejoignez Elite Mercato", joinSub: "Choisissez votre type de compte pour commencer",
     roleLaeb: "Joueur", roleLaebDesc: "Présentez votre talent aux clubs et recruteurs",
