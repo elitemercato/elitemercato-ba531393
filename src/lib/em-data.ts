@@ -6,6 +6,7 @@ export type Player = {
   wilaya: string; wilayaEn: string; wilayaFr: string;
   value: number; age: number; rating: number;
   goals: number; assists: number; img: string;
+  photo?: string;
   foot: "R" | "L"; height: number; weight: number; nationality: string;
 };
 
