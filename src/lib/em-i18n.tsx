@@ -7,7 +7,7 @@ export const T = {
     subtagline: "نربط المواهب الجزائرية بالأندية الاحترافية عبر الكشف القائم على البيانات والخدمات المتكاملة",
     navHome: "الرئيسية", navDashboard: "لوحة الأندية", navPlayer: "ملف اللاعب",
     navMarket: "السوق", navPricing: "الأسعار", login: "تسجيل الدخول",
-    stat1: "لاعب نشط", stat2: "نادٍ احترافي", stat3: "معاملة مكتملة", stat4: "خبير تقني",
+    stat1: "لاعب نشط", stat2: "نادٍ", stat3: "معاملة مكتملة", stat4: "خبير تقني",
     heroBtn: "استكشف المنصة", heroBtn2: "للأندية: ابدأ مجاناً",
     filterTitle: "فلترة اللاعبين", filterPos: "المركز", filterWilaya: "الولاية", filterValue: "القيمة السوقية",
     allPos: "كل المراكز", allWilaya: "كل الولايات", allVal: "كل القيم",
