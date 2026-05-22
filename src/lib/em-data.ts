@@ -10,8 +10,10 @@ export type Player = {
   foot: "R" | "L"; height: number; weight: number; nationality: string;
 };
 
+import riyadPhoto from "@/assets/players/riyad-b.png";
+
 export const PLAYERS: Player[] = [
-  { id: 1, name: "رياض ب.", nameEn: "Riyad B.", nameFr: "Riyad B.", position: "ST", club: "اتحاد العاصمة", clubEn: "USM Alger", clubFr: "USM Alger", wilaya: "الجزائر", wilayaEn: "Algiers", wilayaFr: "Alger", value: 15000000, age: 24, rating: 88, goals: 18, assists: 7, img: "RA", foot: "R", height: 181, weight: 77, nationality: "DZ" },
+  { id: 1, name: "رياض ب.", nameEn: "Riyad B.", nameFr: "Riyad B.", position: "ST", club: "اتحاد العاصمة", clubEn: "USM Alger", clubFr: "USM Alger", wilaya: "الجزائر", wilayaEn: "Algiers", wilayaFr: "Alger", value: 15000000, age: 24, rating: 88, goals: 18, assists: 7, img: "RA", photo: riyadPhoto, foot: "R", height: 181, weight: 77, nationality: "DZ" },
   { id: 2, name: "أمين ط.", nameEn: "Amine T.", nameFr: "Amine T.", position: "CM", club: "شبيبة القبائل", clubEn: "JS Kabylie", clubFr: "JS Kabylie", wilaya: "تيزي وزو", wilayaEn: "Tizi Ouzou", wilayaFr: "Tizi Ouzou", value: 9500000, age: 22, rating: 82, goals: 5, assists: 12, img: "AT", foot: "L", height: 178, weight: 72, nationality: "DZ" },
   { id: 3, name: "يوسف م.", nameEn: "Youcef M.", nameFr: "Youcef M.", position: "CB", club: "مولودية الجزائر", clubEn: "MC Alger", clubFr: "MC Alger", wilaya: "الجزائر", wilayaEn: "Algiers", wilayaFr: "Alger", value: 7000000, age: 26, rating: 80, goals: 1, assists: 2, img: "YM", foot: "R", height: 188, weight: 83, nationality: "DZ" },
   { id: 4, name: "إسلام ح.", nameEn: "Islam H.", nameFr: "Islam H.", position: "GK", club: "مولودية وهران", clubEn: "MC Oran", clubFr: "MC Oran", wilaya: "وهران", wilayaEn: "Oran", wilayaFr: "Oran", value: 5000000, age: 28, rating: 83, goals: 0, assists: 0, img: "IH", foot: "R", height: 190, weight: 85, nationality: "DZ" },
