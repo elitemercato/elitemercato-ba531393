@@ -16,24 +16,32 @@ export function PlayerCard({ p }: { p: Player }) {
   const { lang, t } = useLang();
   return (
     <div className="group relative rounded-2xl border border-border bg-card overflow-hidden transition-all hover:border-primary/40 hover:shadow-[var(--shadow-elite)]">
-      <div className="p-5 border-b border-border bg-gradient-to-br from-primary/10 to-transparent">
-        <div className="flex items-start gap-3">
-          <div className="h-14 w-14 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center font-bold text-lg text-primary-foreground shrink-0">
-            {p.img}
+      <div className="relative p-5 border-b border-border bg-gradient-to-br from-primary/15 via-primary/5 to-transparent overflow-hidden">
+        <div className="absolute -top-6 -right-6 h-32 w-32 rounded-full bg-primary/10 blur-2xl" />
+        <div className="relative flex items-center gap-4">
+          <div className="relative h-20 w-20 shrink-0">
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary to-accent blur-md opacity-60 group-hover:opacity-90 transition-opacity" />
+            {p.photo ? (
+              <img
+                src={p.photo}
+                alt={playerName(p, lang)}
+                className="relative h-20 w-20 rounded-2xl object-cover object-top ring-2 ring-primary/40 shadow-[var(--shadow-elite)]"
+              />
+            ) : (
+              <div className="relative h-20 w-20 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center font-extrabold text-xl text-primary-foreground ring-2 ring-primary/40">
+                {p.img}
+              </div>
+            )}
+            <span className={`absolute -bottom-1 -right-1 text-[10px] font-bold px-1.5 py-0.5 rounded-md border shadow-md ${posColor[p.position]}`}>{p.position}</span>
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="font-bold text-foreground truncate">{playerName(p, lang)}</h3>
-            <div className="flex items-center gap-2 mt-1 flex-wrap">
-              <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded border ${posColor[p.position]}`}>{p.position}</span>
-              <span className="text-xs text-muted-foreground truncate">{playerClub(p, lang)}</span>
-            </div>
-          </div>
-          <div className="text-center shrink-0">
-            <div className="flex items-center gap-0.5 text-gold">
+            <h3 className="font-extrabold text-lg text-foreground truncate leading-tight">{playerName(p, lang)}</h3>
+            <div className="text-xs text-muted-foreground truncate mt-1">{playerClub(p, lang)}</div>
+            <div className="flex items-center gap-1 mt-2 text-gold">
               <Star size={12} fill="currentColor" />
               <span className="font-bold text-sm">{p.rating}</span>
+              <span className="text-[10px] text-muted-foreground ml-1">{t.rating}</span>
             </div>
-            <div className="text-[10px] text-muted-foreground">{t.rating}</div>
           </div>
         </div>
       </div>
