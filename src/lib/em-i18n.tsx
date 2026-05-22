@@ -81,7 +81,7 @@ export const T = {
     season: "Season", yrs: "yrs",
     feat1Title: "Data-Driven Scouting", feat1Desc: "Advanced filters, precise stats & real-time player comparison",
     feat2Title: "Protected Platform", feat2Desc: "Contact data protected, commissions guaranteed",
-    feat3Title: "Full National Coverage", feat3Desc: "Players from all Algerian wilayas, Ligue 1 & LIRF",
+    feat3Title: "Full National Coverage", feat3Desc: "From North to South, from East to West… everyone is here",
     heroBadge: "Next-gen Algerian talent scouting",
     navJoin: "Join Us", joinTitle: "Join Elite Mercato", joinSub: "Choose your account type to get started",
     roleLaeb: "Player", roleLaebDesc: "Showcase your talent to clubs and scouts",
