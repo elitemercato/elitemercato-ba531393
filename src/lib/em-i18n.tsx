@@ -59,7 +59,7 @@ export const T = {
     subtagline: "Bridging Algerian talents with professional clubs through data-driven scouting and integrated services",
     navHome: "Home", navDashboard: "Club Dashboard", navPlayer: "Player Profile",
     navMarket: "Marketplace", navPricing: "Pricing", login: "Login",
-    stat1: "Active Players", stat2: "Pro Clubs", stat3: "Deals Closed", stat4: "Tech Experts",
+    stat1: "Active Players", stat2: "Clubs", stat3: "Deals Closed", stat4: "Tech Experts",
     heroBtn: "Explore Platform", heroBtn2: "Clubs: Start Free",
     filterTitle: "Filter Players", filterPos: "Position", filterWilaya: "Wilaya", filterValue: "Market Value",
     allPos: "All Positions", allWilaya: "All Wilayas", allVal: "All Values",
