@@ -52,9 +52,13 @@ function PlayerView() {
       <div className="relative rounded-3xl overflow-hidden border border-border p-8 bg-gradient-to-br from-primary/20 via-card to-card">
         <div className="absolute inset-0 -z-0 opacity-20 bg-[radial-gradient(circle_at_top_right,_oklch(0.78_0.13_87/0.4),_transparent_60%)]" />
         <div className="relative flex flex-col md:flex-row items-start md:items-center gap-6">
-          <div className="h-24 w-24 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center font-extrabold text-3xl text-primary-foreground shadow-[var(--shadow-elite)]">
-            {p.img}
-          </div>
+          {p.photo ? (
+            <img src={p.photo} alt={name} className="h-28 w-28 rounded-2xl object-cover object-top ring-2 ring-primary/40 shadow-[var(--shadow-elite)]" />
+          ) : (
+            <div className="h-24 w-24 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center font-extrabold text-3xl text-primary-foreground shadow-[var(--shadow-elite)]">
+              {p.img}
+            </div>
+          )}
           <div className="flex-1">
             <div className="flex items-center gap-2 flex-wrap mb-2">
               <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-primary/20 text-primary border border-primary/30">{p.position}</span>
