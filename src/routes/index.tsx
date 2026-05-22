@@ -8,10 +8,10 @@ export const Route = createFileRoute("/")({ component: Home });
 function Home() {
   const { t, lang } = useLang();
   const stats = [
-    { val: "500+", label: t.stat1, Icon: Users },
-    { val: "15", label: t.stat2, Icon: Building2 },
-    { val: "1,200+", label: t.stat3, Icon: TrendingUp },
-    { val: "80+", label: t.stat4, Icon: UserCheck },
+    { val: "50+", label: t.stat1, Icon: Users },
+    { val: "5", label: t.stat2, Icon: Building2 },
+    { val: "120+", label: t.stat3, Icon: TrendingUp },
+    { val: "19+", label: t.stat4, Icon: UserCheck },
   ];
   const features = [
     { Icon: Search, title: t.feat1Title, desc: t.feat1Desc },
