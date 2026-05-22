@@ -111,7 +111,7 @@ export const T = {
     subtagline: "Connecter les talents algériens aux clubs professionnels via le recrutement basé sur les données",
     navHome: "Accueil", navDashboard: "Tableau Clubs", navPlayer: "Profil Joueur",
     navMarket: "Marché", navPricing: "Tarifs", login: "Connexion",
-    stat1: "Joueurs Actifs", stat2: "Clubs Pro", stat3: "Deals Conclus", stat4: "Experts Techniques",
+    stat1: "Joueurs Actifs", stat2: "Clubs", stat3: "Deals Conclus", stat4: "Experts Techniques",
     heroBtn: "Explorer la Plateforme", heroBtn2: "Clubs : Commencer Gratuitement",
     filterTitle: "Filtrer les Joueurs", filterPos: "Poste", filterWilaya: "Wilaya", filterValue: "Valeur Marchande",
     allPos: "Tous les Postes", allWilaya: "Toutes Wilayas", allVal: "Toutes Valeurs",
