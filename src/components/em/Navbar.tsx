@@ -32,9 +32,11 @@ export function Navbar() {
     { to: "/", label: t.navHome },
     { to: "/dashboard", label: t.navDashboard },
     { to: "/marketplace", label: t.navMarket },
+    { to: "/compare", label: lang === "ar" ? "مقارنة" : lang === "fr" ? "Comparer" : "Compare" },
     { to: "/pricing", label: t.navPricing },
     { to: "/signup", label: t.navJoin },
   ];
+
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/80 border-b border-border">
