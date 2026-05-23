@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { HeartPulse, Video, Scale, LineChart, ShieldCheck, Sparkles } from "lucide-react";
+import { HeartPulse, Video, Scale, LineChart, ShieldCheck, Sparkles, Crown, CheckCircle2 } from "lucide-react";
+import { toast } from "sonner";
 import { RequireAuth } from "@/components/em/RequireAuth";
 
 export const Route = createFileRoute("/marketplace")({
@@ -56,8 +57,13 @@ function Marketplace() {
     <div dir="rtl" className="font-tajawal min-h-screen bg-background text-foreground">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-8">
         <header className="text-right">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold/15 text-gold text-xs font-bold mb-3 border border-gold/30">
-            <Sparkles size={14} /> متجر Elite Mercato
+          <div className="flex flex-wrap items-center gap-2 mb-3 justify-end">
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/15 text-primary text-xs font-bold border border-primary/30">
+              <Crown size={14} /> باقة الأندية مفعّلة · 149,000 دج / سنوياً
+            </span>
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold/15 text-gold text-xs font-bold border border-gold/30">
+              <Sparkles size={14} /> متجر Elite Mercato
+            </span>
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary">
             خدمات احترافية لتطوير مسارك الرياضي
@@ -111,6 +117,13 @@ function ServiceCard({ s, index }: { s: Service; index: number }) {
             </div>
           </div>
           <button
+            onClick={() =>
+              toast.success("تم إرسال طلبك بنجاح!", {
+                description: `سيتم التواصل معك قريباً بخصوص: ${s.title}`,
+                icon: <CheckCircle2 className="text-emerald-500" />,
+                duration: 4500,
+              })
+            }
             className="w-full px-4 py-2.5 rounded-xl text-primary-foreground text-sm font-extrabold transition-all hover:brightness-110 active:scale-95"
             style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-elite)" }}
           >
