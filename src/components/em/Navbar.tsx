@@ -30,12 +30,12 @@ export function Navbar() {
 
   const items = [
     { to: "/", label: t.navHome },
-    { to: "/dashboard", label: t.navDashboard },
-    { to: "/marketplace", label: t.navMarket },
-    { to: "/compare", label: lang === "ar" ? "مقارنة" : lang === "fr" ? "Comparer" : "Compare" },
+    { to: "/dashboard", label: t.navDashboard, auth: true },
+    { to: "/marketplace", label: t.navMarket, auth: true },
+    { to: "/compare", label: lang === "ar" ? "مقارنة" : lang === "fr" ? "Comparer" : "Compare", auth: true },
     { to: "/pricing", label: t.navPricing },
-    { to: "/signup", label: t.navJoin },
-  ];
+    { to: "/signup", label: t.navJoin, guest: true },
+  ].filter(n => (n.auth ? authed : n.guest ? !authed : true));
 
 
   return (
