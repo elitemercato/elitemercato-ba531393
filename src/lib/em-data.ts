@@ -11,6 +11,7 @@ export type Player = {
 };
 
 import riyadPhoto from "@/assets/players/riyad-b.png";
+import ayoubPhoto from "@/assets/players/ayoub-g.png";
 
 export const PLAYERS: Player[] = [
   { id: 1, name: "رياض ب.", nameEn: "Riyad B.", nameFr: "Riyad B.", position: "ST", club: "اتحاد العاصمة", clubEn: "USM Alger", clubFr: "USM Alger", wilaya: "الجزائر", wilayaEn: "Algiers", wilayaFr: "Alger", value: 15000000, age: 24, rating: 88, goals: 18, assists: 7, img: "RA", photo: riyadPhoto, foot: "R", height: 181, weight: 77, nationality: "DZ" },
