@@ -1,5 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { BadgeCheck, Crown, Footprints, Play, Ruler, Weight, Building2, RefreshCw, TrendingUp, Target, Award, GitCompareArrows } from "lucide-react";
+import { BadgeCheck, Crown, Footprints, Play, Ruler, Weight, Building2, RefreshCw, TrendingUp, Target, Award, GitCompareArrows, Search, Filter, Briefcase } from "lucide-react";
+import { useState, useMemo } from "react";
+import { toast } from "sonner";
 import { RequireAuth } from "@/components/em/RequireAuth";
 import { PLAYERS, formatDZD, type Player } from "@/lib/em-data";
 
@@ -38,6 +40,8 @@ function Dashboard() {
         <PlayerProfile player={riyad} />
         <PlayerProfile player={ayoub} />
 
+        <ScoutingEngine />
+
         <div className="rounded-2xl border border-gold/30 bg-gold/10 px-5 py-4 flex items-center gap-3">
           <div className="h-10 w-10 rounded-xl bg-gold text-gold-foreground flex items-center justify-center shrink-0">
             <Building2 size={20} />
@@ -48,6 +52,92 @@ function Dashboard() {
             — وصول كامل لقاعدة اللاعبين والخدمات.
           </p>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function ScoutingEngine() {
+  const positionAr: Record<string, string> = { ALL: "كل المراكز", ST: "مهاجم", CM: "وسط ميدان", CB: "مدافع محوري", GK: "حارس مرمى", RW: "جناح أيمن", LB: "ظهير أيسر" };
+  const [pos, setPos] = useState<string>("ALL");
+  const [maxAge, setMaxAge] = useState<number>(30);
+  const [q, setQ] = useState("");
+
+  const filtered = useMemo(() => PLAYERS.filter(p =>
+    (pos === "ALL" || p.position === pos) &&
+    p.age <= maxAge &&
+    (q.trim() === "" || p.name.includes(q) || p.club.includes(q))
+  ), [pos, maxAge, q]);
+
+  return (
+    <section className="bg-card rounded-2xl border border-border shadow-sm overflow-hidden">
+      <div className="px-5 py-4 border-b border-border flex items-center justify-between flex-wrap gap-2" style={{ background: "var(--gradient-primary)" }}>
+        <div className="flex items-center gap-2 text-primary-foreground">
+          <Briefcase size={18} />
+          <h2 className="font-extrabold text-base sm:text-lg">محرّك الكشافة الرقمي · B2B</h2>
+        </div>
+        <span className="text-[11px] font-bold text-gold bg-gold/15 border border-gold/40 px-2.5 py-1 rounded-full">{filtered.length} لاعب متاح</span>
+      </div>
+
+      <div className="p-4 grid sm:grid-cols-3 gap-3 border-b border-border bg-secondary/40">
+        <label className="flex items-center gap-2 bg-background rounded-xl border border-border px-3 py-2">
+          <Search size={16} className="text-muted-foreground" />
+          <input value={q} onChange={e => setQ(e.target.value)} placeholder="ابحث باسم اللاعب أو النادي…" className="flex-1 bg-transparent text-sm outline-none text-right" />
+        </label>
+        <label className="flex items-center gap-2 bg-background rounded-xl border border-border px-3 py-2">
+          <Filter size={16} className="text-muted-foreground" />
+          <select value={pos} onChange={e => setPos(e.target.value)} className="flex-1 bg-transparent text-sm outline-none text-right">
+            {Object.entries(positionAr).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
+          </select>
+        </label>
+        <label className="flex items-center gap-2 bg-background rounded-xl border border-border px-3 py-2 text-sm">
+          <span className="text-muted-foreground shrink-0">السن ≤</span>
+          <input type="range" min={18} max={35} value={maxAge} onChange={e => setMaxAge(Number(e.target.value))} className="flex-1 accent-primary" />
+          <span className="font-extrabold text-primary w-8 text-center">{maxAge}</span>
+        </label>
+      </div>
+
+      <div className="p-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {filtered.length === 0 && (
+          <div className="col-span-full text-center text-sm text-muted-foreground py-10">لا يوجد لاعب يطابق هذه المعايير.</div>
+        )}
+        {filtered.map(p => <ScoutCard key={p.id} p={p} posAr={positionAr[p.position]} />)}
+      </div>
+    </section>
+  );
+}
+
+function ScoutCard({ p, posAr }: { p: Player; posAr: string }) {
+  return (
+    <div className="rounded-xl border border-border bg-background overflow-hidden hover:border-gold/50 hover:shadow-[var(--shadow-elite)] transition-all group">
+      <div className="flex items-center gap-3 p-3">
+        <div className="h-14 w-14 rounded-xl overflow-hidden bg-secondary ring-2 ring-gold/30 shrink-0 flex items-center justify-center font-extrabold text-primary">
+          {p.photo ? <img src={p.photo} alt={p.name} className="h-full w-full object-cover" /> : p.img}
+        </div>
+        <div className="flex-1 min-w-0 text-right">
+          <div className="flex items-center justify-end gap-1.5">
+            <h4 className="font-extrabold text-sm truncate">{p.name}</h4>
+            <BadgeCheck size={14} className="text-gold shrink-0" />
+          </div>
+          <p className="text-[11px] text-muted-foreground truncate">{posAr} · {p.club}</p>
+          <div className="flex items-center justify-end gap-1 mt-1">
+            <span className="text-[10px] px-1.5 py-0.5 rounded bg-primary/15 text-primary font-bold">{p.age} سنة</span>
+            <span className="text-[10px] px-1.5 py-0.5 rounded bg-gold/15 text-gold font-bold">{p.rating}/100</span>
+          </div>
+        </div>
+      </div>
+      <div className="px-3 pb-3 grid grid-cols-2 gap-2">
+        <Link to="/player/$id" params={{ id: String(p.id) }}
+          className="text-center text-[11px] font-extrabold py-2 rounded-lg text-primary-foreground hover:brightness-110 active:scale-95 transition"
+          style={{ background: "var(--gradient-primary)" }}>
+          عرض الحقيبة الرقمية
+        </Link>
+        <button
+          onClick={() => toast.success("تم إرسال عرض رسمي!", { description: `إلى ${p.name} (${p.club}) — قيمة مقترحة: ${formatDZD(p.value)} €` })}
+          className="text-center text-[11px] font-extrabold py-2 rounded-lg border border-gold/50 text-gold hover:bg-gold/10 transition"
+        >
+          إرسال عرض
+        </button>
       </div>
     </div>
   );
