@@ -207,7 +207,9 @@ function PlayerProfile({ player }: { player: Player }) {
           <span className="text-[10px] text-muted-foreground">Highlight Reels</span>
         </div>
         <div className="relative aspect-video flex items-center justify-center" style={{ background: "var(--gradient-primary)" }}>
-          <button className="h-14 w-14 rounded-full bg-gold hover:brightness-110 text-gold-foreground flex items-center justify-center shadow-xl transition hover:scale-105">
+          <button
+            onClick={() => toast.info("جاري تحميل أبرز اللقطات…", { description: `${player.name} · 02:34 HD` })}
+            className="h-14 w-14 rounded-full bg-gold hover:brightness-110 text-gold-foreground flex items-center justify-center shadow-xl transition hover:scale-105">
             <Play size={24} className="ms-0.5" fill="currentColor" />
           </button>
           <span className="absolute bottom-2 right-3 text-primary-foreground/80 text-[10px]">02:34 · HD</span>
@@ -215,7 +217,9 @@ function PlayerProfile({ player }: { player: Player }) {
         <div className="p-4 flex-1 flex flex-col">
           <span className="text-[11px] font-bold text-muted-foreground">باقة الرياضيين</span>
           <div className="mt-1 text-2xl font-extrabold text-primary">9,900 <span className="text-sm text-muted-foreground">دج / سنوياً</span></div>
-          <button className="mt-auto pt-3 inline-flex items-center justify-center gap-2 font-bold rounded-xl py-2.5 text-gold-foreground text-sm" style={{ background: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}>
+          <button
+            onClick={() => toast.success("تم تجديد الاشتراك بنجاح!", { description: "باقة الرياضيين · 9,900 دج / سنوياً" })}
+            className="mt-auto pt-3 inline-flex items-center justify-center gap-2 font-bold rounded-xl py-2.5 text-gold-foreground text-sm" style={{ background: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}>
             <RefreshCw size={14} /> تجديد الاشتراك
           </button>
         </div>
