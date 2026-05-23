@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { LangProvider } from "@/lib/em-i18n";
 import { Navbar } from "@/components/em/Navbar";
 import { Footer } from "@/components/em/Footer";
+import { Toaster } from "@/components/ui/sonner";
 import { getRemember } from "@/lib/em-auth";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -107,6 +108,7 @@ function RootComponent() {
           <Navbar />
           <main className="flex-1"><Outlet /></main>
           <Footer />
+          <Toaster position="top-center" richColors closeButton />
         </div>
       </LangProvider>
     </QueryClientProvider>
