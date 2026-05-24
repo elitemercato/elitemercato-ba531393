@@ -179,6 +179,7 @@ function PlanCard({ plan, onSubscribe }: { plan: Plan; onSubscribe: () => void }
       </ul>
 
       <button
+        onClick={onSubscribe}
         className={`w-full py-3.5 rounded-xl font-extrabold transition-all text-sm sm:text-base hover:brightness-110 ${
           isFeatured ? "text-gold-foreground" : "text-primary-foreground"
         }`}
