@@ -10,6 +10,7 @@ const posColor: Record<string, string> = {
   GK: "bg-yellow-500/20 text-yellow-300 border-yellow-500/30",
   RW: "bg-purple-500/20 text-purple-300 border-purple-500/30",
   LB: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30",
+  RB: "bg-teal-500/20 text-teal-300 border-teal-500/30",
 };
 
 export function PlayerCard({ p }: { p: Player }) {

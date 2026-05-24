@@ -58,7 +58,7 @@ function Dashboard() {
 }
 
 function ScoutingEngine() {
-  const positionAr: Record<string, string> = { ALL: "كل المراكز", ST: "مهاجم", CM: "وسط ميدان", CB: "مدافع محوري", GK: "حارس مرمى", RW: "جناح أيمن", LB: "ظهير أيسر" };
+  const positionAr: Record<string, string> = { ALL: "كل المراكز", ST: "مهاجم", CM: "وسط ميدان", CB: "مدافع محوري", GK: "حارس مرمى", RW: "جناح أيمن", LB: "ظهير أيسر", RB: "ظهير أيمن" };
   const [pos, setPos] = useState<string>("ALL");
   const [maxAge, setMaxAge] = useState<number>(30);
   const [q, setQ] = useState("");
@@ -144,7 +144,7 @@ function ScoutCard({ p, posAr }: { p: Player; posAr: string }) {
 }
 
 function PlayerProfile({ player }: { player: Player }) {
-  const positionAr: Record<string, string> = { ST: "مهاجم", CM: "وسط ميدان", CB: "مدافع محوري", GK: "حارس مرمى", RW: "جناح أيمن", LB: "ظهير أيسر" };
+  const positionAr: Record<string, string> = { ST: "مهاجم", CM: "وسط ميدان", CB: "مدافع محوري", GK: "حارس مرمى", RW: "جناح أيمن", LB: "ظهير أيسر", RB: "ظهير أيمن" };
   return (
     <article className="grid lg:grid-cols-3 gap-6">
       <section className="lg:col-span-2 bg-card rounded-2xl shadow-sm border border-border overflow-hidden">
