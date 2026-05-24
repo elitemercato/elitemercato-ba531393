@@ -70,6 +70,8 @@ const PLANS: Plan[] = [
 ];
 
 function Pricing() {
+  const [checkout, setCheckout] = useState<CheckoutItem | null>(null);
+
   return (
     <div dir="rtl" className="font-tajawal min-h-screen bg-background text-foreground">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
@@ -87,15 +89,29 @@ function Pricing() {
 
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
           {PLANS.map((plan) => (
-            <PlanCard key={plan.id} plan={plan} />
+            <PlanCard
+              key={plan.id}
+              plan={plan}
+              onSubscribe={() =>
+                setCheckout({ title: plan.title, subtitle: plan.subtitle, price: plan.priceNumber })
+              }
+            />
           ))}
         </div>
       </div>
+
+      <CheckoutModal
+        open={!!checkout}
+        item={checkout}
+        onClose={() => setCheckout(null)}
+        successDescription={checkout ? `تم تفعيل: ${checkout.title}` : undefined}
+      />
     </div>
   );
 }
 
-function PlanCard({ plan }: { plan: Plan }) {
+
+function PlanCard({ plan, onSubscribe }: { plan: Plan; onSubscribe: () => void }) {
   const Icon = plan.icon;
   const isFeatured = plan.featured;
 
