@@ -58,7 +58,7 @@ function Dashboard() {
 }
 
 function ScoutingEngine() {
-  const positionAr: Record<string, string> = { ALL: "كل المراكز", ST: "مهاجم", CM: "وسط ميدان", CB: "مدافع محوري", GK: "حارس مرمى", RW: "جناح أيمن", LB: "ظهير أيسر" };
+  const positionAr: Record<string, string> = { ALL: "كل المراكز", ST: "مهاجم", CM: "وسط ميدان", CB: "مدافع محوري", GK: "حارس مرمى", RW: "جناح أيمن", LB: "ظهير أيسر", RB: "ظهير أيمن" };
   const [pos, setPos] = useState<string>("ALL");
   const [maxAge, setMaxAge] = useState<number>(30);
   const [q, setQ] = useState("");
