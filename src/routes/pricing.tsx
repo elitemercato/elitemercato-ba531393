@@ -1,5 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { Check, Building2, User, Sparkles } from "lucide-react";
+import { CheckoutModal, type CheckoutItem } from "@/components/em/CheckoutModal";
+
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
@@ -16,6 +19,8 @@ type Plan = {
   title: string;
   subtitle: string;
   price: string;
+  priceNumber: number;
+
   period: string;
   features: string[];
   cta: string;
@@ -29,6 +34,8 @@ const PLANS: Plan[] = [
     title: "باقة الأندية الرياضية",
     subtitle: "B2B · للأندية والمؤسسات الرياضية",
     price: "149,000",
+    priceNumber: 149000,
+
     period: "دج / سنوياً",
     features: [
       "وصول كامل لمحرك الكشافة الرقمي",
@@ -46,6 +53,8 @@ const PLANS: Plan[] = [
     title: "باقة الرياضيين واللاعبين",
     subtitle: "B2C · للاعبين المحترفين والهواة",
     price: "9,900",
+    priceNumber: 9900,
+
     period: "دج / سنوياً",
     features: [
       "إنشاء حقيبة رياضية احترافية",
