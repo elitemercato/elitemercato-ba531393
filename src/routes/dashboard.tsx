@@ -144,7 +144,7 @@ function ScoutCard({ p, posAr }: { p: Player; posAr: string }) {
 }
 
 function PlayerProfile({ player }: { player: Player }) {
-  const positionAr: Record<string, string> = { ST: "مهاجم", CM: "وسط ميدان", CB: "مدافع محوري", GK: "حارس مرمى", RW: "جناح أيمن", LB: "ظهير أيسر" };
+  const positionAr: Record<string, string> = { ST: "مهاجم", CM: "وسط ميدان", CB: "مدافع محوري", GK: "حارس مرمى", RW: "جناح أيمن", LB: "ظهير أيسر", RB: "ظهير أيمن" };
   return (
     <article className="grid lg:grid-cols-3 gap-6">
       <section className="lg:col-span-2 bg-card rounded-2xl shadow-sm border border-border overflow-hidden">
