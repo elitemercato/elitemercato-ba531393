@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { HeartPulse, Video, Scale, LineChart, ShieldCheck, Sparkles, Crown, CheckCircle2 } from "lucide-react";
-import { toast } from "sonner";
+import { useState } from "react";
+import { HeartPulse, Video, Scale, LineChart, ShieldCheck, Sparkles, Crown } from "lucide-react";
 import { RequireAuth } from "@/components/em/RequireAuth";
+import { CheckoutModal, type CheckoutItem } from "@/components/em/CheckoutModal";
+
 
 export const Route = createFileRoute("/marketplace")({
   head: () => ({
