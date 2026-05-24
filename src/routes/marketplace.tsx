@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { HeartPulse, Video, Scale, LineChart, ShieldCheck, Sparkles, Crown, CheckCircle2 } from "lucide-react";
-import { toast } from "sonner";
+import { useState } from "react";
+import { HeartPulse, Video, Scale, LineChart, ShieldCheck, Sparkles, Crown } from "lucide-react";
 import { RequireAuth } from "@/components/em/RequireAuth";
+import { CheckoutModal, type CheckoutItem } from "@/components/em/CheckoutModal";
+
 
 export const Route = createFileRoute("/marketplace")({
   head: () => ({
@@ -53,6 +55,8 @@ const SERVICES: Service[] = [
 ];
 
 function Marketplace() {
+  const [checkout, setCheckout] = useState<CheckoutItem | null>(null);
+
   return (
     <div dir="rtl" className="font-tajawal min-h-screen bg-background text-foreground">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-8">
@@ -75,15 +79,28 @@ function Marketplace() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {SERVICES.map((s, i) => (
-            <ServiceCard key={s.title} s={s} index={i} />
+            <ServiceCard
+              key={s.title}
+              s={s}
+              index={i}
+              onBook={() => setCheckout({ title: s.title, subtitle: s.category, price: s.price })}
+            />
           ))}
         </div>
       </div>
+
+      <CheckoutModal
+        open={!!checkout}
+        item={checkout}
+        onClose={() => setCheckout(null)}
+        successDescription={checkout ? `سيتم التواصل معك قريباً بخصوص: ${checkout.title}` : undefined}
+      />
     </div>
   );
 }
 
-function ServiceCard({ s, index }: { s: Service; index: number }) {
+function ServiceCard({ s, index, onBook }: { s: Service; index: number; onBook: () => void }) {
+
   const Icon = s.icon;
   return (
     <article
@@ -117,18 +134,13 @@ function ServiceCard({ s, index }: { s: Service; index: number }) {
             </div>
           </div>
           <button
-            onClick={() =>
-              toast.success("تم إرسال طلبك بنجاح!", {
-                description: `سيتم التواصل معك قريباً بخصوص: ${s.title}`,
-                icon: <CheckCircle2 className="text-emerald-500" />,
-                duration: 4500,
-              })
-            }
+            onClick={onBook}
             className="w-full px-4 py-2.5 rounded-xl text-primary-foreground text-sm font-extrabold transition-all hover:brightness-110 active:scale-95"
             style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-elite)" }}
           >
             طلب الخدمة
           </button>
+
         </div>
       </div>
     </article>

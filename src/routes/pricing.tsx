@@ -1,5 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { Check, Building2, User, Sparkles } from "lucide-react";
+import { CheckoutModal, type CheckoutItem } from "@/components/em/CheckoutModal";
+
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
@@ -16,6 +19,8 @@ type Plan = {
   title: string;
   subtitle: string;
   price: string;
+  priceNumber: number;
+
   period: string;
   features: string[];
   cta: string;
@@ -29,6 +34,8 @@ const PLANS: Plan[] = [
     title: "باقة الأندية الرياضية",
     subtitle: "B2B · للأندية والمؤسسات الرياضية",
     price: "149,000",
+    priceNumber: 149000,
+
     period: "دج / سنوياً",
     features: [
       "وصول كامل لمحرك الكشافة الرقمي",
@@ -46,6 +53,8 @@ const PLANS: Plan[] = [
     title: "باقة الرياضيين واللاعبين",
     subtitle: "B2C · للاعبين المحترفين والهواة",
     price: "9,900",
+    priceNumber: 9900,
+
     period: "دج / سنوياً",
     features: [
       "إنشاء حقيبة رياضية احترافية",
@@ -61,6 +70,8 @@ const PLANS: Plan[] = [
 ];
 
 function Pricing() {
+  const [checkout, setCheckout] = useState<CheckoutItem | null>(null);
+
   return (
     <div dir="rtl" className="font-tajawal min-h-screen bg-background text-foreground">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
@@ -78,15 +89,29 @@ function Pricing() {
 
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
           {PLANS.map((plan) => (
-            <PlanCard key={plan.id} plan={plan} />
+            <PlanCard
+              key={plan.id}
+              plan={plan}
+              onSubscribe={() =>
+                setCheckout({ title: plan.title, subtitle: plan.subtitle, price: plan.priceNumber })
+              }
+            />
           ))}
         </div>
       </div>
+
+      <CheckoutModal
+        open={!!checkout}
+        item={checkout}
+        onClose={() => setCheckout(null)}
+        successDescription={checkout ? `تم تفعيل: ${checkout.title}` : undefined}
+      />
     </div>
   );
 }
 
-function PlanCard({ plan }: { plan: Plan }) {
+
+function PlanCard({ plan, onSubscribe }: { plan: Plan; onSubscribe: () => void }) {
   const Icon = plan.icon;
   const isFeatured = plan.featured;
 
@@ -154,6 +179,7 @@ function PlanCard({ plan }: { plan: Plan }) {
       </ul>
 
       <button
+        onClick={onSubscribe}
         className={`w-full py-3.5 rounded-xl font-extrabold transition-all text-sm sm:text-base hover:brightness-110 ${
           isFeatured ? "text-gold-foreground" : "text-primary-foreground"
         }`}
