@@ -1,7 +1,7 @@
 export type Player = {
   id: number;
   name: string; nameEn: string; nameFr: string;
-  position: "ST" | "CM" | "CB" | "GK" | "RW" | "LB";
+  position: "ST" | "CM" | "CB" | "GK" | "RW" | "LB" | "RB";
   club: string; clubEn: string; clubFr: string;
   wilaya: string; wilayaEn: string; wilayaFr: string;
   value: number; age: number; rating: number;
