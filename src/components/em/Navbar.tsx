@@ -33,7 +33,7 @@ export function Navbar() {
     { to: "/dashboard", label: t.navDashboard, auth: true },
     { to: "/marketplace", label: t.navMarket, auth: true },
     { to: "/compare", label: lang === "ar" ? "مقارنة" : lang === "fr" ? "Comparer" : "Compare", auth: true },
-    { to: "/pricing", label: t.navPricing },
+    { to: "/pricing", label: t.navPricing, auth: true },
     { to: "/signup", label: t.navJoin, guest: true },
   ].filter(n => (n.auth ? authed : n.guest ? !authed : true));
 
