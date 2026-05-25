@@ -38,11 +38,16 @@ function NotFoundComponent() {
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   const router = useRouter();
+  if (typeof console !== "undefined") {
+    console.error(error);
+  }
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold">This page didn't load</h1>
-        <p className="mt-2 text-sm text-muted-foreground">{error.message}</p>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Something went wrong. Please try again or contact support.
+        </p>
         <div className="mt-6 flex gap-2 justify-center">
           <button onClick={() => { router.invalidate(); reset(); }}
             className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">Try again</button>
