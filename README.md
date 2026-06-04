@@ -3,6 +3,7 @@
 ## التشغيل السريع (Quick Start)
 
 ### 1. تثبيت الاعتماديات
+
 ```bash
 # باستخدام bun (المفضل)
 bun install
@@ -11,7 +12,26 @@ bun install
 npm install
 ```
 
-### 2. تشغيل خادم التطوير
+### 2. إعداد متغيرات البيئة (.env)
+
+قبل التشغيل، أنشئ ملف `.env` من القالب:
+
+```bash
+cp .env.example .env
+```
+
+ثم املأ القيم الحقيقية من لوحة التحكم:
+
+| المتغير | مكان الحصول عليه |
+|---------|-----------------|
+| `VITE_SUPABASE_URL` / `SUPABASE_URL` | Dashboard → Settings → API → URL |
+| `VITE_SUPABASE_PUBLISHABLE_KEY` / `SUPABASE_PUBLISHABLE_KEY` | Dashboard → Settings → API → `anon` public key |
+| `VITE_SUPABASE_PROJECT_ID` | Dashboard → Settings → General → Reference ID |
+
+> ⚠️ **لا ترفع** ملف `.env` إلى Git! هو مدرج في `.gitignore` افتراضياً.
+
+### 3. تشغيل خادم التطوير
+
 ```bash
 # السكربت السريع
 bun run start
