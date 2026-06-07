@@ -22,6 +22,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as PlayerIdRouteImport } from './routes/player.$id'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
+import { Route as ApiPublicNotifyAdminRouteImport } from './routes/api/public/notify-admin'
 import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
@@ -91,6 +92,11 @@ const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
   path: '/lovable/email/suppression',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicNotifyAdminRoute = ApiPublicNotifyAdminRouteImport.update({
+  id: '/api/public/notify-admin',
+  path: '/api/public/notify-admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LovableEmailTransactionalSendRoute =
   LovableEmailTransactionalSendRouteImport.update({
     id: '/lovable/email/transactional/send',
@@ -123,6 +129,7 @@ export interface FileRoutesByFullPath {
   '/signup': typeof SignupRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/player/$id': typeof PlayerIdRoute
+  '/api/public/notify-admin': typeof ApiPublicNotifyAdminRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -141,6 +148,7 @@ export interface FileRoutesByTo {
   '/signup': typeof SignupRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/player/$id': typeof PlayerIdRoute
+  '/api/public/notify-admin': typeof ApiPublicNotifyAdminRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -160,6 +168,7 @@ export interface FileRoutesById {
   '/signup': typeof SignupRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/player/$id': typeof PlayerIdRoute
+  '/api/public/notify-admin': typeof ApiPublicNotifyAdminRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -180,6 +189,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/email/unsubscribe'
     | '/player/$id'
+    | '/api/public/notify-admin'
     | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
     | '/lovable/email/transactional/preview'
@@ -198,6 +208,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/email/unsubscribe'
     | '/player/$id'
+    | '/api/public/notify-admin'
     | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
     | '/lovable/email/transactional/preview'
@@ -216,6 +227,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/email/unsubscribe'
     | '/player/$id'
+    | '/api/public/notify-admin'
     | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
     | '/lovable/email/transactional/preview'
@@ -235,6 +247,7 @@ export interface RootRouteChildren {
   SignupRoute: typeof SignupRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
   PlayerIdRoute: typeof PlayerIdRoute
+  ApiPublicNotifyAdminRoute: typeof ApiPublicNotifyAdminRoute
   LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
   LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
   LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
@@ -334,6 +347,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LovableEmailSuppressionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/notify-admin': {
+      id: '/api/public/notify-admin'
+      path: '/api/public/notify-admin'
+      fullPath: '/api/public/notify-admin'
+      preLoaderRoute: typeof ApiPublicNotifyAdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lovable/email/transactional/send': {
       id: '/lovable/email/transactional/send'
       path: '/lovable/email/transactional/send'
@@ -371,6 +391,7 @@ const rootRouteChildren: RootRouteChildren = {
   SignupRoute: SignupRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
   PlayerIdRoute: PlayerIdRoute,
+  ApiPublicNotifyAdminRoute: ApiPublicNotifyAdminRoute,
   LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
   LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
   LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
@@ -379,3 +400,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
