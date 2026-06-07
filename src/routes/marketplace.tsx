@@ -93,6 +93,7 @@ function Marketplace() {
         open={!!checkout}
         item={checkout}
         onClose={() => setCheckout(null)}
+        notifyEventType="service_request"
         successDescription={checkout ? `سيتم التواصل معك قريباً بخصوص: ${checkout.title}` : undefined}
       />
     </div>

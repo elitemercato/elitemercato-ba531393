@@ -4,6 +4,7 @@ import { ArrowLeft, Briefcase, Building2, GraduationCap, Stethoscope, User } fro
 import { useLang } from "@/lib/em-i18n";
 import { redirectForRole, setRole as persistRole, setRemember, type Role } from "@/lib/em-auth";
 import { supabase } from "@/integrations/supabase/client";
+import { notifyAdmin } from "@/lib/notify-admin";
 import logo from "@/assets/elite-mercato-logo.png";
 
 export const Route = createFileRoute("/signup")({
@@ -55,6 +56,14 @@ function Signup() {
         },
       });
       if (error) throw error;
+      // Notify admin of new signup (fire-and-forget)
+      notifyAdmin({
+        eventType: "signup",
+        userName: form.name,
+        userEmail: form.email,
+        userPhone: form.phone,
+        userRole: role,
+      });
       if (data.session) {
         redirectForRole(role, navigate);
       } else {

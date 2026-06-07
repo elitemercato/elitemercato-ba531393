@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Lock, ShieldCheck, CreditCard, Loader2, CheckCircle2, X, Sparkles } from "lucide-react";
 import { toast } from "sonner";
+import { notifyAdmin, type AdminNotifyPayload } from "@/lib/notify-admin";
 
 type Method = "edahabia" | "cib";
 
@@ -16,12 +17,14 @@ export function CheckoutModal({
   onClose,
   successMessage = "تم الدفع بنجاح! مرحباً بك في عالم Elite Mercato",
   successDescription,
+  notifyEventType,
 }: {
   open: boolean;
   item: CheckoutItem | null;
   onClose: () => void;
   successMessage?: string;
   successDescription?: string;
+  notifyEventType?: AdminNotifyPayload["eventType"];
 }) {
   const [method, setMethod] = useState<Method>("edahabia");
   const [name, setName] = useState("");
@@ -72,6 +75,15 @@ export function CheckoutModal({
     setTimeout(() => {
       setLoading(false);
       setDone(true);
+      if (notifyEventType && item) {
+        notifyAdmin({
+          eventType: notifyEventType,
+          userName: name,
+          itemTitle: item.title,
+          itemSubtitle: item.subtitle,
+          itemPrice: item.price,
+        });
+      }
       setTimeout(() => {
         onClose();
         toast.success(successMessage, {
