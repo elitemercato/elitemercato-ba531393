@@ -20,6 +20,7 @@ import { Route as CompareRouteImport } from './routes/compare'
 import { Route as ClubsRouteImport } from './routes/clubs'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PlayerIdRouteImport } from './routes/player.$id'
+import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
 
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
@@ -76,6 +77,12 @@ const PlayerIdRoute = PlayerIdRouteImport.update({
   path: '/player/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LovableEmailQueueProcessRoute =
+  LovableEmailQueueProcessRouteImport.update({
+    id: '/lovable/email/queue/process',
+    path: '/lovable/email/queue/process',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -89,6 +96,7 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
   '/player/$id': typeof PlayerIdRoute
+  '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -102,6 +110,7 @@ export interface FileRoutesByTo {
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
   '/player/$id': typeof PlayerIdRoute
+  '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -116,6 +125,7 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
   '/player/$id': typeof PlayerIdRoute
+  '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -131,6 +141,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/signup'
     | '/player/$id'
+    | '/lovable/email/queue/process'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -144,6 +155,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/signup'
     | '/player/$id'
+    | '/lovable/email/queue/process'
   id:
     | '__root__'
     | '/'
@@ -157,6 +169,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/signup'
     | '/player/$id'
+    | '/lovable/email/queue/process'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -171,6 +184,7 @@ export interface RootRouteChildren {
   ResetPasswordRoute: typeof ResetPasswordRoute
   SignupRoute: typeof SignupRoute
   PlayerIdRoute: typeof PlayerIdRoute
+  LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -252,6 +266,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlayerIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lovable/email/queue/process': {
+      id: '/lovable/email/queue/process'
+      path: '/lovable/email/queue/process'
+      fullPath: '/lovable/email/queue/process'
+      preLoaderRoute: typeof LovableEmailQueueProcessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -267,6 +288,7 @@ const rootRouteChildren: RootRouteChildren = {
   ResetPasswordRoute: ResetPasswordRoute,
   SignupRoute: SignupRoute,
   PlayerIdRoute: PlayerIdRoute,
+  LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
