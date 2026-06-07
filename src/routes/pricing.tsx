@@ -104,6 +104,7 @@ function Pricing() {
         open={!!checkout}
         item={checkout}
         onClose={() => setCheckout(null)}
+        notifyEventType="plan_subscription"
         successDescription={checkout ? `تم تفعيل: ${checkout.title}` : undefined}
       />
     </div>
